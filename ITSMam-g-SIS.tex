@@ -18,9 +18,9 @@
 \title{Group-Centric Models for Secure and Agile Information Sharing}
 %
 % --> ... und den Namen des Autors:
-\author{Tobias Pöppke}
+\author{Uwe Kühn, Tobias Pöppke}
 % --> optional eine URL mailto:... oder http://www...
-\authorURL{mailto:tobias.poeppke@student.kit.edu}
+%\authorURL{mailto:tobias.poeppke@student.kit.edu}
 % /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ 
 % -----------------------------------------------------------------------------
 %
@@ -135,15 +135,43 @@
 % (dann erscheint die URL nicht als zwangsweise im Text).
 
 \section{Grundlagen}
-\label{tmp_basics}
+\label{basics}
 
-LBAC, RBAC, MAC, DAC.
+\subsection{Linear Temporal Logic}
+\label{ltl}
+
+\subsection{LBAC}
+\label{LBAC}
+TODO: LBAC
+
+TODO: DTE
+
+\subsection{Role-Based Access Control}
+\label{rbac}
+\emph{Role-Based Access Control} (RBAC) ist ein Zugriffskontrollmodel, dass von Sandhu et al. und Ferraiolo et al. vorgeschlagen wurde \cite{sandhu96, ferraiolo2001proposed}.
+Ein Benutzer sei im Folgenden, ohne Beschränkung der Allgemeinheit, definiert als ein menschlicher Benutzer.
+Das Hauptmerkmal von RBAC sind \emph{Rollen}. Eine \emph{Rolle} basiert auf der Idee einer Position innerhalb einer Organisation, 
+die mit bestimmten Rechten und Verantwortlichkeiten einhergeht. 
+Daher werden jeder Rolle bestimmte \emph{Zugriffsrechte} auf \emph{Objekte} zugewiesen, wobei ein \emph{Objekt} Informationen bereitstellen oder erhalten kann.
+Ein \emph{Zugriffsrecht} gewährt einer Rolle die Möglichkeit eine oder mehrere \emph{Operationen} auf einem oder mehreren Objekten auszuführen.
+
+Ein Benutzer kann in RBAC mehreren Rollen zugehören und eine Rolle kann ebenfalls mehreren Benutzern zugeordnet sein.
+Diese Relation wird als \emph{User Assignment (UA)} bezeichnet. 
+Genau so können auch Zugriffsrechte zu Rollen in einer many-to-many Relation zugewiesen werden, 
+die als \emph{Permission Assignment (PA)} bezeichnet wird.
+
+TODO: Sessions
+
+TODO: Formale Definition
+
+
+
 
 Policy-, Enforcement-Layer.
 
 Subscription Service, Meeting room Metaphern.
 
-\section{g-SIS Models}
+\section{g-SIS Modelle}
 \label{tmp_models}
 Connected differentiated/undifferentiated, Isolated differentiated/undifferentiated.
 
@@ -152,14 +180,14 @@ Core properties für isolated undifferentiated model.
 Inter-group Relationship Semantics für connected undifferentiated group models.
 
 \section{Andere Policies in g-SIS}
-\label{tmp_other_policies}
+\label{other_policies}
 
 LBAC Policies in g-SIS, Domain and Type Enforcement.
 
 RBAC Policies in g-SIS.
 
 \section{Fazit}
-\label{tmp_summary}
+\label{summary}
 
 
 % \label{tmp_Subsection}
