@@ -76,7 +76,7 @@
  \label{Introduction} % und ein Label
  
 TODO: Subscription Service, Meeting room Metaphern.
-\cite{gsis2}
+\cite{gsis1} \cite{gsis2} 
  
  
 % % Das Label ist eine Marke, auf die man später mit \ref{labelname} verweisen kann.
@@ -167,7 +167,7 @@ Sicherheitsklassen der jeweiligen Objekte statt.
 Die \emph{Richtlinien} mit denen die Informationsflüsse beschrieben werden, können mithilfe von \emph{Lattices} beschrieben werden.
 Ein \emph{Lattice} ist in diesem Zusammenhang die partiell geordnete Menge der Sicherheitsklassen. 
 Im Modell von Bell und LaPadula werden beispielsweise die Objekte ihren Sicherheitsklassen zugewiesen.
-Benutzer könne dann Subjekte erstellen, die eine Sicherheitsklasse besitzen, 
+Benutzer könne dann \emph{Subjekte}, wie zum Beispiel einen Prozess, erstellen, die eine Sicherheitsklasse besitzen, 
 die von der Sicherheitsklasse des Benutzers im Lattice dominiert wird. 
 Ein Subjekt kann genau dann Objekte lesen, wenn die Sicherheitsklasse des Objekts von der des Subjekts dominiert wird.
 Auf ein Objekt schreibend zugreifen kann ein Subjekt genau dann, wenn die Sicherheitsklasse des Objekts die Sicherheitsklasse des Subjekts dominiert.
@@ -234,15 +234,55 @@ constrained RBAC. Für die Definitionen dieser Modelle sei an dieser Stelle jedoc
 
 TODO: Übergang zum nächsten Kapitel
 
-\section{g-SIS Modelle}
-\label{models}
+\section{G-SIS}
+\label{gsis}
+
 
 \subsection{Klassifizierung von g-SIS Modellen}
-Connected differentiated/undifferentiated, Isolated differentiated/undifferentiated.
+In vielen Fällen ist es notwendig, die Benutzer eines abzusichernden Systems in mehr als eine Gruppe einzuteilen. 
+Diese Gruppen können sowohl nach der Art der Beziehung zwischen den einzelnen Gruppen unterschieden werden,
+als auch nach der Art der Beziehungen zwischen den Benutzern innerhalb einer Gruppe.
 
-Core properties für isolated undifferentiated model.
+Verschiedene Gruppen in g-SIS könenn \emph{verbunden} oder \emph{isoliert} sein.
+Sind Gruppen untereinander \emph{isoliert}, hat die Mitgliedschaft eines Benutzers, 
+Subjekts oder Objekts keinen Einfluss auf die Mitgliedschaft eines Benutzers, 
+Subjekts oder Objekts in einer anderen Gruppe.
 
-\subsection{}
+Im Falle mehrerer \emph{verbundener} Gruppen kann die Mitgliedschaft in einer Gruppe 
+verschiedene Auswirkungen auf die Mitgliedschaft und die möglichen Operationen in einer anderen Gruppe haben.
+
+Die Mitglieder innerhalb einer Gruppe können wiederum alle die gleichen Zugriffsrechte besitzen.
+Diese Art der Gruppe wird in g-SIS definiert als eine \emph{undifferenzierte} Gruppe.
+Im Gegensatz dazu können in einer \emph{differenzierten} Gruppe verschiedenen Benutzern 
+auch verschiedene Zugriffsrechte eingeräumt werden.
+
+Die genannten Unterschiede und ihre Kombinationen führen zu vier möglichen g-SIS Modellen.
+Diese sind das \emph{isoliert undifferenzierte Modell}, das \emph{isoliert differenzierte Modell}, das \emph{verbunden undifferenzierte Modell} 
+sowie das \emph{verbunden differenzierte Modell}.
+
+Das \emph{isoliert undifferenzierte Modell} beschreibt das Modell, 
+in dem die Mitgliedschaft in einer Gruppe keinen Einfluss auf andere Gruppen im System hat.
+Ebenso gibt es innerhalb der einzelnen Gruppen keinen Unterschied in den Zugriffsrechten der einzelnen Mitglieder,
+außer den Unterschieden, die durch die g-SIS Core Properties (s.h. Abschnitt \ref{properties}) 
+für die Zugriffsrechte festgelegt werden. 
+Das isolierte undifferenzierte Modell bildet damit die Grundlage für die anderen g-SIS Modelle.
+
+Im \emph{verbundenen undifferenzierten Modell} kann die Mitgliedschaft in einer Gruppe 
+verschiedene Auswirkungen auf andere Gruppen haben, die im folgenden Abschnitt genauer betrachtet werden.
+Desweiteren haben die Mitglieder untereinander, wie im isolierten undifferenzierten Modell, die selben Zugriffsrechte.
+In Abbildung \ref{img_models} sind die Beziehungen zwischen den einzelnen 
+g-SIS Modellen grafisch dargestellt. Das isoliert undifferenzierte Modell ist in allen anderen Modellen enthalten.
+Das isoliert differenzierte Modell und das verbunden undifferenzierte Modell sind in diesem Sinne nicht vergleichbar.
+Das verbunden differenzierte Modell wiederum enthält alle anderen Modelle.
+
+TODO: Grafik einbauen
+\begin{figure}[htb] 
+\centerline{\includegraphics*[width=0.8\textwidth]{an_example_picture}}
+\caption{Hier g-SIS Modelle} 
+\label{img_models}
+\end{figure}
+
+\subsection{Beziehungen zwischen Gruppen}
 
 Inter-group Relationship Semantics für connected undifferentiated group models.
 
