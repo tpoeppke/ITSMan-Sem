@@ -15,8 +15,9 @@
 % ---------------------------------------------------------------------------
 % \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ 
 % --> Bitte den Titel des Beitrages in die nächste Zeile eintragen:
-\title{Group-Centric Models for Secure and Agile Information Sharing}
-%
+\title{IT-Sicherheitsmanagement Seminar: Group-Centric Models for Secure Information Sharing (g-SIS)}
+
+\newtheorem{definition} [Definition]%
 % --> ... und den Namen des Autors:
 \author{Uwe Kühn, Tobias Pöppke}
 % --> optional eine URL mailto:... oder http://www...
@@ -72,7 +73,12 @@
 % \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ 
 % --> ... und hier kommt der Text: 
 \section{Einleitung} % in die Klammern die Ueberschrift 
- \label{tmp_Introduction} % und ein Label
+ \label{Introduction} % und ein Label
+ 
+TODO: Subscription Service, Meeting room Metaphern.
+\cite{gsis2}
+ 
+ 
 % % Das Label ist eine Marke, auf die man später mit \ref{labelname} verweisen kann.
 % % BITTE ALLE LABELS MIT t01_ BEGINNEN.
 % % Hier den Text eintragen:
@@ -137,45 +143,106 @@
 \section{Grundlagen}
 \label{basics}
 
+Policy-, Enforcement-Layer.
+
+
+
 \subsection{Linear Temporal Logic}
 \label{ltl}
 
-\subsection{LBAC}
-\label{LBAC}
-TODO: LBAC
+\subsection{Lattice-Based Access Control}
+\label{lbac}
+Eine wichtige Klasse von Zugriffskontrollmodellen sind \emph{Lattice-Based Access Control (LBAC)} Modelle.
+Die Grundlagen von LBAC wurden in den 1970ern von Bell, LaPadula, Biba und Denning gelegt und entstanden 
+aus den Bedürfnissen des Verteidigungssektors. Eine Übersicht über die verschiedenen Modelle 
+und formale Definitionen, sowie weiterführende Referenzen finden sich bei Sandhu \cite{lbac2}.
 
-TODO: DTE
+LBAC Modelle konzentrieren sich auf die Betrachtung des Informationsflusses zwischen Sicherheitsklassen eines Systems.
+Dazu wird jedem \emph{Objekt} des Systems eine \emph{Sicherheitsklasse} zugewiesen. 
+Ein \emph{Objekt} sei hier informell definiert als ein Container für Informationen.
+Wenn nun die Informationen eines Objekts \emph{x} zu einem Objekt \emph{y} fließen geht 
+damit ein Informationsfluss einher. Dieser Informationsfluss findet zwischen den 
+Sicherheitsklassen der jeweiligen Objekte statt.
+
+Die \emph{Richtlinien} mit denen die Informationsflüsse beschrieben werden, können mithilfe von \emph{Lattices} beschrieben werden.
+Ein \emph{Lattice} ist in diesem Zusammenhang die partiell geordnete Menge der Sicherheitsklassen. 
+Im Modell von Bell und LaPadula werden beispielsweise die Objekte ihren Sicherheitsklassen zugewiesen.
+Benutzer könne dann Subjekte erstellen, die eine Sicherheitsklasse besitzen, 
+die von der Sicherheitsklasse des Benutzers im Lattice dominiert wird. 
+Ein Subjekt kann genau dann Objekte lesen, wenn die Sicherheitsklasse des Objekts von der des Subjekts dominiert wird.
+Auf ein Objekt schreibend zugreifen kann ein Subjekt genau dann, wenn die Sicherheitsklasse des Objekts die Sicherheitsklasse des Subjekts dominiert.
+
+\subsection{Domain and Type Enforcement}
+\label{dte}
+Die Idee des \emph{Domain and Type Enforcement (DTE)}, von Badger et al. vorgeschlagen \cite{dte}, ist eine Erweiterung der Lattice-Based Access Control um \emph{Domänen} und \emph{Typen}.
+Eine \emph{Domäne} enthält Subjekte und Objekte werden zu \emph{Typen} zugeordnet. 
+Um den Informationsfluss zu kontrollieren, wird eine Matrix benutzt, 
+in der die Lese- und Schreibrechte für jede Kombination von Domäne und Typ festgelegt werden.
+Diese Art der Zugriffskontrolle ist beispielsweise dann anwendbar, 
+wenn es gewünscht ist, vertrauenswürdige Pipelines zu etablieren. 
+Wenn zum Beispiel gewünscht wird, dass Informationen nur über ein Subjekt einer 
+dritten Domäne zum Zielobjekt fließen dürfen, ist dies mit klassischen LBAC-Modellen nicht möglich.
+Dies liegt an der transitiven Natur der zugrundeliegenden Relation in LBAC. 
+
+Da die im Lattice höher angesiedelten Sicherheitsklassen in LBAC alle unter ihnen 
+liegenden Sicherheitsklassen dominieren und diese Relation transitiv ist, kann Information immer 
+von allen dominierten Sicherheitsklassen direkt in die dominierende Sicherheitsklasse fließen.
+Da bei DTE eine Matrix den zulässigen Informationsfluss definiert, 
+ist diese Relation nicht länger transitiv und die Informationen können nach Wunsch über verschiedene Wege fließen.
 
 \subsection{Role-Based Access Control}
 \label{rbac}
-\emph{Role-Based Access Control} (RBAC) ist ein Zugriffskontrollmodel, dass von Sandhu et al. und Ferraiolo et al. vorgeschlagen wurde \cite{sandhu96, ferraiolo2001proposed}.
+\emph{Role-Based Access Control (RBAC)} ist ein Zugriffskontrollmodel, dass von Sandhu et al. und Ferraiolo et al. vorgeschlagen wurde \cite{sandhu96, ferraiolo2001proposed}.
 Ein Benutzer sei im Folgenden, ohne Beschränkung der Allgemeinheit, definiert als ein menschlicher Benutzer.
-Das Hauptmerkmal von RBAC sind \emph{Rollen}. Eine \emph{Rolle} basiert auf der Idee einer Position innerhalb einer Organisation, 
+Das Hauptmerkmal von RBAC sind \emph{Rollen}. Eine Rolle basiert auf der Idee eine Position innerhalb einer Organisation darzustellen, 
 die mit bestimmten Rechten und Verantwortlichkeiten einhergeht. 
 Daher werden jeder Rolle bestimmte \emph{Zugriffsrechte} auf \emph{Objekte} zugewiesen, wobei ein \emph{Objekt} Informationen bereitstellen oder erhalten kann.
 Ein \emph{Zugriffsrecht} gewährt einer Rolle die Möglichkeit eine oder mehrere \emph{Operationen} auf einem oder mehreren Objekten auszuführen.
 
 Ein Benutzer kann in RBAC mehreren Rollen zugehören und eine Rolle kann ebenfalls mehreren Benutzern zugeordnet sein.
 Diese Relation wird als \emph{User Assignment (UA)} bezeichnet. 
-Genau so können auch Zugriffsrechte zu Rollen in einer many-to-many Relation zugewiesen werden, 
+Genau so können auch Zugriffsrechte zu Rollen in einer many-to-many Beziehung zugewiesen werden, 
 die als \emph{Permission Assignment (PA)} bezeichnet wird.
 
-TODO: Sessions
+Ein weiteres Konzept das in RBAC benutzt wird, sind \emph{Sessions}. 
+Ein Benutzer kann einer oder mehreren Sessions zugeordnet sein und jede Session ist genau einem Benutzer zugeordnet.
+In jeder Session kann wiederum eine Untermenge der Rollen, denen der Benutzer angehört, aktiviert sein.
+Welche Rollen, und damit auch welche Zugriffsrechte, in einer Session aktiviert sind, kann durch die Funtktion \emph{session_roles} abgefragt werden.
+Um zu erfahren, welche Sessions zu einem Benutzer gehören, kann die Funktion \emph{user_sessions} aufgerufen werden.
 
-TODO: Formale Definition
+Die obigen Eigenschaften beschreiben \emph{Core RBAC} beziehungsweise \emph{$RBAC_0$}. Formal kann damit Core RBAC wie folgt definiert werden.
+\begin{definition} [Core RBAC]
+\begin{itemize}
+\item \emph{USERS, ROLES, OPS und OBS}: Mengen der Benutzer, Rollen, Operationen und Objekten.
+\item \emph{$UA \subseteq USERS \times ROLES$}: Menge der Zuweisungen von Benutzern zu Rollen.
+\item \emph{$assigned\_users: (r: ROLES) \rightarrow 2^{USERS}, assigned\_users(r) = \{u \in USERS | (u, r) \in UA\}$}: Zuordnung der Rolle \emph{r} zu der zugehörigen Menge der Benutzer.
+\item \emph{$PRMS = 2 ^ {(OPS \times OBS)}$}: Menge der Zugriffsrechte.
+\item \emph{$PA \subseteq PRMS \times ROLES$}: Zuordnung der Zugriffsrechte zu Rollen.
+\item \emph{$assigned\_permissions(r: ROLES) \rightarrow 2^{PRMS}, assigned\_permissions(r) = \{u \in USERS | (u, r) \in PA\}$}: Zuordnung der Rolle \emph{r} zu der zugehörigen Menge der Zugriffsrechte.
+\item \emph{$Ob(p: PRMS) \rightarrow \{op \subseteq OBS\}$}: Gibt die Menge der Operationen an, die einem Zugriffsrecht \emph{p} zugeordnet sind.
+\item \emph{$Ob(p: PRMS) \rightarrow \{ob \subseteq OBS\}$}: Gibt die Menge der Objekte an, die einem Zugriffsrecht \emph{p} zugeordnet sind.
+\item \emph{SESSIONS}: Menge der Sessions.
+\item \emph{$user\_sessions(u: Users) \rightarrow 2^{SESSIONS}$}: Zuordnung eines Benutzers \emph{u} zu einer Menge von Sessions.
+\item \emph{$session\_roles(s: SESSIONS) \rightarrow 2^{ROLES}, session\_roles(s_i) \subseteq \{r \in ROLES | (session\_users(si), r) \in UA\}$}: Zuordnung einer Session \emph{s} zu der zugehörigen Menge von Rollen.
+\item \emph{$avail\_session\_perms(s: SESSIONS) \rightarrow 2^{PRMS}$, \bigcup{r \in sesseion\_roles(s)}{assigned\permissions(r)}}: Die Zugriffsrechte, die einem Benutzer in einer Session zur Verfügung stehen.
+\end{itemize}
+\end{definition}
 
+Das Core RBAC Modell definiert die grundlegenden Eigenschaften jedes RBAC Modells. 
+Es wurden auch weitergehende Modelle beschrieben, wie hierarchisches RBAC und 
+constrained RBAC. Für die Definitionen dieser Modelle sei an dieser Stelle jedoch lediglich auf Ferraiolo et al. \cite{ferraiolo2001proposed} verwiesen
 
-
-
-Policy-, Enforcement-Layer.
-
-Subscription Service, Meeting room Metaphern.
+TODO: Übergang zum nächsten Kapitel
 
 \section{g-SIS Modelle}
-\label{tmp_models}
+\label{models}
+
+\subsection{Klassifizierung von g-SIS Modellen}
 Connected differentiated/undifferentiated, Isolated differentiated/undifferentiated.
 
 Core properties für isolated undifferentiated model.
+
+\subsection{}
 
 Inter-group Relationship Semantics für connected undifferentiated group models.
 
