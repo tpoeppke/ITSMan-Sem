@@ -338,14 +338,14 @@ Wie weiter oben schon erwähnt, reicht es hier und im Folgenden aus, das verbunde
 \subsection{Lattice-Based Access Control in $g-SIS^c$}
 In $g-SIS^c$ können LBAC Richtlinien, wie zum Beispiel das Bell-LaPadula Modell, modelliert werden. 
 Um ein bestehendes Bell-LaPadula System in $g-SIS^c$ zu konstruieren, muss für jede Sicherheitsklasse in LBAC eine Gruppe in $g-SIS^c$ erstellt werden.
-Für jede Sicherheitsklasse H, die eine Sicherheitsklasse L im Sinne von LBAC dominiert, müssen für die zugehörigen Gruppen G_H und G_L die Relationen subordR(G_L, G_H), 
-subordC(G_L, G_H) und subordW(G_H, G_L). Da die Relationen in LBAC jedoch transitiv sind, muss darauf geachtet werden, 
+Für jede Sicherheitsklasse H, die eine Sicherheitsklasse L im Sinne von LBAC dominiert, müssen für die zugehörigen Gruppen G\_H und G\_L die Relationen subordR(G\_L, G\_H), 
+subordC(G\_L, G\_H) und subordW(G\_H, G\_L). Da die Relationen in LBAC jedoch transitiv sind, muss darauf geachtet werden, 
 diesen Schritt auch mit jeder Sicherheitsklasse zu wiederholen, die L dominiert. Für ein Beispiel dieser Transformation sei hier auf Sandhu et al. \cite{gsis2} verwiesen.
 
 Für den Fall, dass zwei Organisationen mit unterschiedlichen LBAC Lattices Informationen austauschen wollen, kann dies im 
 klassischen LBAC nicht durch einfache Anpassungen an den Lattices bewerkstelligt werden. Wurden die Richtlinien jedoch mit $g-SIS^c$ modelliert, 
 ist es beispielsweise möglich alle Objekte mit Sicherheitsklasse L in Organisation A für alle Benutzer in Organisation B mit Sicherheitsklasse TS freizugeben.
-Dazu muss lediglich die Relation subordR(G_B_TS, G_A_L) definiert werden.
+Dazu muss lediglich die Relation subordR(G\_B\_TS, G\_A\_L) definiert werden.
 
 \subsection{Domain and Type Enforcement in $g-SIS^c$}
 Wie in Abschnitt \ref{dte} beschrieben, ist es mit klassischen LBAC Richtlinien nicht möglich bestimmte Anforderungen an den Informationsfluss zu erfüllen.
@@ -388,8 +388,8 @@ Im Beispiel resultieren aus diesem Schritt die Gruppen Manager_G, Experte_G und 
 Im nächsten Schritt müssen Gruppen für die möglichen Sessions angelegt werden. Dabei muss berücksichtigt werden, 
 dass es möglich ist, dass eine Session keine aktivierten Rollen besitzt. 
 Es muss also wiederum für jede möglche Kombination von aktivierten Rollen in einer Session eine Gruppe erstellt werden.
-Damit ergibt sich im Beispiel die Gruppe KeineRollen_S, für eine Session ohne aktive Rollen. Desweiteren Manager_S und Experte_S, 
-für Sessions in denen die Manager oder die Experten Rolle aktiv ist, sowie die Gruppe ManagerExperte_S für den Fall, dass beide Rollen aktiviert sind.
+Damit ergibt sich im Beispiel die Gruppe KeineRollen\_S, für eine Session ohne aktive Rollen. Desweiteren Manager\_S und Experte\_S, 
+für Sessions in denen die Manager oder die Experten Rolle aktiv ist, sowie die Gruppe ManagerExperte\_S für den Fall, dass beide Rollen aktiviert sind.
 
 Benutzer müssen in der Lage sein Subjekte in diesen Gruppen zu erstellen. Daher sind subordC Relationen zwischen den Rollengruppen und den Sessiongruppen definiert.
 Es muss außerdem in einer Session möglich sein Rollen zu aktivieren oder zu deaktivieren. Dazu müssen symmetrische subordM Relationen zwischen allen Sessiongruppen definiert werden.
@@ -397,7 +397,7 @@ Das erlaubt den Subjekten die aktivierten Rollen zu ändern. Dies sollte jedoch n
 auch den entsprechenden Rollen zugeordnet ist. Der Einfachheit halber soll hier jedoch auf diese Bedingungen nicht weiter eingegangen werden.
 
 Als letzter Schritt müssen nun noch Gruppen für die Objekte gebildet werden. Jedes Objekt benötigt eine Gruppe für jedes Zugriffsrecht. 
-Daher ergeben sich die Gruppen Read_Bericht1 und Write_Bericht1, sowie Read_Bericht2 und Write_Bericht2.
+Daher ergeben sich die Gruppen Read\_Bericht1 und Write\_Bericht1, sowie Read\_Bericht2 und Write\_Bericht2.
 Für jede Session werden dann entsprechend der aktiven Rollen die subordR und subordW Relationen zu den Objektgruppen definiert.
 
 \section{Fazit}
