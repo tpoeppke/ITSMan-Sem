@@ -142,9 +142,14 @@ TODO: Subscription Service, Meeting room Metaphern.
 
 \section{Grundlagen}
 \label{basics}
-Unterscheidung zwischen Policy und Enforcement Ebene. Wichtig Policy zu definieren, aber konkrete Umsetzung in der Enforcement Ebene nicht betrachtet.
-
-
+Grundsätzlich muss bei der Unterscheidung von Zugriffskontrollmodellen zwischen Policy und Enforcement Ebene unterschieden werden. 
+Diese Unterscheidung basiert auf dem Prinzip der Trennung von Policy und Mechanism, die von Levin et al. eingeführt wurde \cite{policy}.
+Dabei wird unterschieden zwischen der Definition einer Policy und deren konkreter Umsetzung in einem System.
+Die Policy Ebene beschäftigt sich daher nicht mit den Problemen, die bei der Umsetzung entstehen, 
+wie zum Beispiel die verwendeten kryptographischen Bausteine, die eingesetzten Datenspeicher oder Quality-of-Service Überlegungen.
+Diese Dinge werden in der Enforcement Ebene berücksichtigt und unter den resultierenden Bedingungen versucht, 
+das Modell der Policy Ebene möglichst genau nachzubilden. Im folgenden werden daher hauptsächlich die Policy Aspekte von g-SIS 
+und den zugrunde liegenden Ideen betrachtet.
 
 \subsection{Linear Temporal Logic}
 \label{ltl}
