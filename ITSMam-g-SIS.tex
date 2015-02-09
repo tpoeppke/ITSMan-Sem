@@ -142,8 +142,7 @@ TODO: Subscription Service, Meeting room Metaphern.
 
 \section{Grundlagen}
 \label{basics}
-
-Policy-, Enforcement-Layer.
+Unterscheidung zwischen Policy und Enforcement Ebene. Wichtig Policy zu definieren, aber konkrete Umsetzung in der Enforcement Ebene nicht betrachtet.
 
 
 
@@ -211,7 +210,7 @@ Welche Rollen, und damit auch welche Zugriffsrechte, in einer Session aktiviert 
 Um zu erfahren, welche Sessions zu einem Benutzer gehören, kann die Funktion \emph{user\_sessions} aufgerufen werden.
 
 Die obigen Eigenschaften beschreiben \emph{Core RBAC} beziehungsweise \emph{RBAC$_0$}. Formal kann damit Core RBAC wie folgt definiert werden.
-\begin{definition} [Core RBAC]
+\begin{definition} [Core RBAC] \ \\
 \begin{itemize}
 \item \emph{USERS, ROLES, OPS und OBS}: Mengen der Benutzer, Rollen, Operationen und Objekten.
 \item \emph{$UA \subseteq USERS \times ROLES$}: Menge der Zuweisungen von Benutzern zu Rollen.
@@ -232,11 +231,9 @@ Das Core RBAC Modell definiert die grundlegenden Eigenschaften jedes RBAC Modell
 Es wurden auch weitergehende Modelle beschrieben, wie hierarchisches RBAC und 
 constrained RBAC. Für die Definitionen dieser Modelle sei an dieser Stelle jedoch lediglich auf Ferraiolo et al. \cite{ferraiolo2001proposed} verwiesen
 
-TODO: Übergang zum nächsten Abschnitt
-
 \section{G-SIS}
 \label{gsis}
-
+TODO: Hier Teil von Uwe?
 
 \subsection{Klassifizierung von g-SIS Modellen}
 In vielen Fällen ist es notwendig, die Benutzer eines abzusichernden Systems in mehr als eine Gruppe einzuteilen. 
@@ -402,7 +399,23 @@ Für jede Session werden dann entsprechend der aktiven Rollen die subordR und sub
 
 \section{Fazit}
 \label{summary}
+Mit der Einführung von g-SIS wurde ein Konzept zur Zugriffskontrolle vorgeschlagen, dass für einige Anwendungen Vorteile bietet.
+Wie gezeigt wurde, ist es möglich mit g-SIS verschiedene klassische Zugriffskontrollmodelle zu modellieren.
+Außerdem ist es mit g-SIS möglich diese klassischen Modelle um Funktionen zu erweitern, die sonst nicht, oder nur mit einigem Aufwand möglich wären.
+Dies zeigt, dass g-SIS ein sehr flexibles Modell ist, das in der Lage ist, sehr feingranular auf die Bedürfnisse der Benutzer einzugehen.
+Außerdem ergibt sich durch die Berücksichtigung des zeitlichen Aspekts eine neue Art der Zugriffskontrolle, 
+die in einigen Anwendungsgebieten Vorteile gegenüber den klassischen Modellen hat.
 
+Jedoch ergeben sich durch die Möglichkeiten der feingranularen Anpassungsmöglichkeiten auch Schwierigkeiten.
+Werden beispielsweise klassische Zugriffskontrollmodelle mit g-SIS modelliert, werden für vergleichsweise einfache Modelle wie RBAC 
+schnell sehr viele Gruppen benötigt. Das führt dazu, dass die Administration eines solchen Systems bei einer großen Anzahl von Benutzern und Gruppen 
+sehr komplex werden kann. Durch den zeitlichen Aspekt wird dieses Problem noch verstärkt, da eventuell durch das Ausnutzen von Schwachstellen 
+in der Konfiguration mit der Zeit Beschränkungen umgangen werden könnten.
+
+Desweiteren ist uns kein System bekannt, das g-SIS in der Praxis einsetzt. Da lediglich die Policy Ebene untersucht wurde,
+bleiben Dinge wie die konkrete Implementierung der Maßnahmen durch kryptographische Bausteine, das zugehörige Key Management oder Laufzeiten von Operationen unbetrachtet.
+Abschließend lässt sich sagen, dass g-SIS ein interessantes Konzept ist, das in bestimmten Bereichen und Anwendungsgebieten 
+sinnvoll einsetzbar sein könnte.
 
 % \label{tmp_Subsection}
 % Dies ist ein Unterabschnitt. Mit \LaTeX\ kann man auch prima Tabellen (siehe
