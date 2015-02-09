@@ -75,8 +75,8 @@
 \section{Einleitung} % in die Klammern die Ueberschrift 
  \label{Introduction} % und ein Label
  
-TODO: Subscription Service, Meeting room Metaphern.
-\cite{gsis1} \cite{gsis2} 
+TODO: Subscription Service , Meeting room Metaphern einführen.
+TODO: Verweise auf beide Arbeiten in der Einleitung: \cite{gsis1} \cite{gsis2} 
  
  
 % % Das Label ist eine Marke, auf die man später mit \ref{labelname} verweisen kann.
@@ -186,7 +186,7 @@ Diese Art der Zugriffskontrolle ist beispielsweise dann anwendbar,
 wenn es gewünscht ist, vertrauenswürdige Pipelines zu etablieren. 
 Wenn es zum Beispiel nötig ist, dass Informationen nur über ein Subjekt einer 
 dritten Domäne zum Zielobjekt fließen dürfen, ist dies mit klassischen LBAC-Modellen nicht möglich.
-Dies liegt an der transitiven Natur der zugrundeliegenden Relation in LBAC. 
+Dies liegt an der transitiven Natur der zugrunde liegenden Relation in LBAC. 
 
 Da die im Lattice höher angesiedelten Sicherheitsklassen in LBAC alle unter ihnen 
 liegenden Sicherheitsklassen dominieren und diese Relation transitiv ist, kann Information immer 
@@ -227,7 +227,7 @@ Die obigen Eigenschaften beschreiben \emph{Core RBAC} beziehungsweise \emph{RBAC
 \item \emph{$Ob(p: PRMS) \rightarrow \{ob \subseteq OBS\}$}: Gibt die Menge der Objekte an, die einem Zugriffsrecht \emph{p} zugeordnet sind.
 \item \emph{SESSIONS}: Menge der Sessions.
 \item \emph{$user\_sessions(u: Users) \rightarrow 2^{SESSIONS}$}: Zuordnung eines Benutzers \emph{u} zu einer Menge von Sessions.
-\item \emph{$session\_roles(s: SESSIONS) \rightarrow 2^{ROLES}, session\_roles(s_i) \subseteq \{r \in ROLES | (session\_users(si), r) \in UA\}$}: Zuordnung einer Session \emph{s} zu der zugehörigen Menge von Rollen.
+\item \emph{$session\_roles(s: SESSIONS) \rightarrow 2^{ROLES}, session\_roles(s_i) \subseteq \{r \in ROLES | (session\_users(s_i), r) \in UA\}$}: Zuordnung einer Session \emph{s} zu der zugehörigen Menge von Rollen.
 \item \emph{$avail\_session\_perms(s: SESSIONS) \rightarrow 2^{PRMS}, \bigcup{r \in session\_roles(s)}{assigned\_permissions(r)}$}: Die Zugriffsrechte, die einem Benutzer in einer Session zur Verfügung stehen.
 \end{itemize}
 \end{definition}
@@ -245,7 +245,7 @@ In vielen Fällen ist es notwendig, die Benutzer eines abzusichernden Systems in 
 Diese Gruppen können sowohl nach der Art der Relationen zwischen den einzelnen Gruppen unterschieden werden,
 als auch nach der Art der Beziehungen zwischen den Benutzern innerhalb einer Gruppe.
 
-Verschiedene Gruppen in g-SIS könenn \emph{verbunden} oder \emph{isoliert} sein.
+Verschiedene Gruppen in g-SIS können \emph{verbunden} oder \emph{isoliert} sein.
 Sind Gruppen untereinander \emph{isoliert}, hat die Mitgliedschaft eines Benutzers, 
 Subjekts oder Objekts keinen Einfluss auf die Mitgliedschaft eines Benutzers, 
 Subjekts oder Objekts in einer anderen Gruppe.
@@ -334,7 +334,7 @@ In Abbildung \ref{img_rel} ist eine Beispielkonfiguration von g-SIS$^c$ zu sehen
 wenn sich die Anforderungen an das System ändern. Dies ist ein wichtiger Aspekt von g-SIS$^c$, 
 da das Teilen von Informationen in einem System von den momentanen Bedürfnissen der Benutzer abhängt.
 
-\section{Andere Zugriffskontrollmechanismen in g-SIS$^c$}
+\section{Andere Zugriffskontrollmodelle in g-SIS$^c$}
 \label{other_policies}
 Mit Hilfe der beschriebenen Eigenschaften der g-SIS Modelle ist es nun möglich, bekannte Zugriffskontrollmodelle mit g-SIS zu modellieren.
 Wie weiter oben schon erwähnt, reicht es hier und im Folgenden aus, das verbunden undifferenzierte Modell für diese Untersuchung zu betrachten.
@@ -422,7 +422,7 @@ schnell sehr viele Gruppen benötigt. Das führt dazu, dass die Administration ein
 sehr komplex werden kann. Durch den zeitlichen Aspekt wird dieses Problem noch verstärkt, da eventuell durch das Ausnutzen von Schwachstellen 
 in der Konfiguration mit der Zeit Beschränkungen umgangen werden könnten.
 
-Desweiteren ist uns kein System bekannt, das g-SIS in der Praxis einsetzt. Da lediglich die Policy Ebene untersucht wurde,
+Des weiteren ist uns kein System bekannt, das g-SIS in der Praxis einsetzt. Da lediglich die Policy Ebene untersucht wurde,
 bleiben Dinge wie die konkrete Implementierung der Maßnahmen durch kryptographische Bausteine, das zugehörige Key Management oder Laufzeiten von Operationen unbeachtet.
 Abschließend lässt sich sagen, dass g-SIS ein interessantes Konzept ist, das in bestimmten Bereichen und Anwendungsgebieten 
 sinnvoll einsetzbar sein könnte. Es ist jedoch noch weitere Arbeit nötig, um das System zu formalisieren und praktisch anwendbar zu machen.

@@ -27,7 +27,7 @@
 
 \ProvidesClass{semdoc}[2000/05/22 Seminarbeitrag] 
 \LoadClass[a4paper,11pt,twoside]{article} % diese Klasse basiert auf ``article''
-%\RequirePackage{ngerman}[1998/07/08] % (v2.5e) Neue Rechtschreibung 
+\RequirePackage{ngerman}[1998/07/08] % (v2.5e) Neue Rechtschreibung 
 \usepackage[latin1]{inputenc} % Eingabe nach ISO 8859-1 (Latin1)
                               % siehe Emacs: iso-accents-mode
 \usepackage[final]{graphicx}  % um Graphiken einzubinden (Standard Graphik-Paket)
