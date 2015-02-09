@@ -210,7 +210,7 @@ In jeder Session kann wiederum eine Untermenge der Rollen, denen der Benutzer an
 Welche Rollen, und damit auch welche Zugriffsrechte, in einer Session aktiviert sind, kann durch die Funktion \emph{session\_roles} abgefragt werden.
 Um zu erfahren, welche Sessions zu einem Benutzer gehören, kann die Funktion \emph{user\_sessions} aufgerufen werden.
 
-Die obigen Eigenschaften beschreiben \emph{Core RBAC} beziehungsweise \emph{$RBAC_0$}. Formal kann damit Core RBAC wie folgt definiert werden.
+Die obigen Eigenschaften beschreiben \emph{Core RBAC} beziehungsweise \emph{RBAC$_0$}. Formal kann damit Core RBAC wie folgt definiert werden.
 \begin{definition} [Core RBAC]
 \begin{itemize}
 \item \emph{USERS, ROLES, OPS und OBS}: Mengen der Benutzer, Rollen, Operationen und Objekten.
@@ -267,7 +267,7 @@ außer den Unterschieden, die durch die g-SIS Core Properties (s.h. Abschnitt \re
 für die Zugriffsrechte festgelegt werden. 
 Das isolierte undifferenzierte Modell bildet damit die Grundlage für die anderen g-SIS Modelle.
 
-Im \emph{verbundenen undifferenzierten Modell} (im Folgenden $g-SIS^c$) kann die Mitgliedschaft in einer Gruppe 
+Im \emph{verbundenen undifferenzierten Modell} (im Folgenden g-SIS$^c$) kann die Mitgliedschaft in einer Gruppe 
 verschiedene Auswirkungen auf andere Gruppen haben, die im folgenden Abschnitt genauer betrachtet werden.
 Desweiteren haben die Mitglieder untereinander, wie im isolierten undifferenzierten Modell, die selben Zugriffsrechte.
 In Abbildung \ref{img_models} sind die Beziehungen zwischen den einzelnen 
@@ -326,31 +326,31 @@ jedoch nicht in beiden Gruppen zur selben Zeit Subjekte erstellen kann.
 Subjekte oder Objekte in einer Gruppe, können definiert werden.
 \end{enumerate}
 
-In Abbildung \ref{img_rel} ist eine Beispielkonfiguration von $g-SIS^c$ zu sehen. Die Relationen innerhalb eines Systems können sich in $g-SIS^c$ auch mit der Zeit ändern, 
-wenn sich die Anforderungen an das System ändern. Dies ist ein wichtiger Aspekt von $g-SIS^c$, 
+In Abbildung \ref{img_rel} ist eine Beispielkonfiguration von g-SIS$^c$ zu sehen. Die Relationen innerhalb eines Systems können sich in g-SIS$^c$ auch mit der Zeit ändern, 
+wenn sich die Anforderungen an das System ändern. Dies ist ein wichtiger Aspekt von g-SIS$^c$, 
 da das Teilen von Informationen in einem System von den momentanen Bedürfnissen der Benutzer abhängt.
 
-\section{Andere Zugriffskontrollmechanismen in $g-SIS^c$}
+\section{Andere Zugriffskontrollmechanismen in g-SIS$^c$}
 \label{other_policies}
 Mit Hilfe der beschriebenen Eigenschaften der g-SIS Modelle ist es nun möglich, bekannte Zugriffskontrollmodelle mit g-SIS zu modellieren.
 Wie weiter oben schon erwähnt, reicht es hier und im Folgenden aus, das verbunden undifferenzierte Modell für diese Untersuchung zu betrachten.
 
-\subsection{Lattice-Based Access Control in $g-SIS^c$}
-In $g-SIS^c$ können LBAC Richtlinien, wie zum Beispiel das Bell-LaPadula Modell, modelliert werden. 
-Um ein bestehendes Bell-LaPadula System in $g-SIS^c$ zu konstruieren, muss für jede Sicherheitsklasse in LBAC eine Gruppe in $g-SIS^c$ erstellt werden.
+\subsection{Lattice-Based Access Control in g-SIS$^c$}
+In g-SIS$^c$ können LBAC Richtlinien, wie zum Beispiel das Bell-LaPadula Modell, modelliert werden. 
+Um ein bestehendes Bell-LaPadula System in g-SIS$^c$ zu konstruieren, muss für jede Sicherheitsklasse in LBAC eine Gruppe in g-SIS$^c$ erstellt werden.
 Für jede Sicherheitsklasse H, die eine Sicherheitsklasse L im Sinne von LBAC dominiert, müssen für die zugehörigen Gruppen G\_H und G\_L die Relationen subordR(G\_L, G\_H), 
 subordC(G\_L, G\_H) und subordW(G\_H, G\_L). Da die Relationen in LBAC jedoch transitiv sind, muss darauf geachtet werden, 
 diesen Schritt auch mit jeder Sicherheitsklasse zu wiederholen, die L dominiert. Für ein Beispiel dieser Transformation sei hier auf Sandhu et al. \cite{gsis2} verwiesen.
 
 Für den Fall, dass zwei Organisationen mit unterschiedlichen LBAC Lattices Informationen austauschen wollen, kann dies im 
-klassischen LBAC nicht durch einfache Anpassungen an den Lattices bewerkstelligt werden. Wurden die Richtlinien jedoch mit $g-SIS^c$ modelliert, 
+klassischen LBAC nicht durch einfache Anpassungen an den Lattices bewerkstelligt werden. Wurden die Richtlinien jedoch mit g-SIS$^c$ modelliert, 
 ist es beispielsweise möglich alle Objekte mit Sicherheitsklasse L in Organisation A für alle Benutzer in Organisation B mit Sicherheitsklasse TS freizugeben.
 Dazu muss lediglich die Relation subordR(G\_B\_TS, G\_A\_L) definiert werden.
 
-\subsection{Domain and Type Enforcement in $g-SIS^c$}
+\subsection{Domain and Type Enforcement in g-SIS$^c$}
 Wie in Abschnitt \ref{dte} beschrieben, ist es mit klassischen LBAC Richtlinien nicht möglich bestimmte Anforderungen an den Informationsfluss zu erfüllen.
-Dieses Problem kann mit DTE gelöst werden und DTE wiederum kann in $g-SIS^c$ modelliert werden.
-Um eine vorhandene DTE Konfiguration in $g-SIS^c$ zu überführen werden zunächst Gruppen für alle möglichen Typen erstellt, in denen sich die Objekte befinden.
+Dieses Problem kann mit DTE gelöst werden und DTE wiederum kann in g-SIS$^c$ modelliert werden.
+Um eine vorhandene DTE Konfiguration in g-SIS$^c$ zu überführen werden zunächst Gruppen für alle möglichen Typen erstellt, in denen sich die Objekte befinden.
 Für jede Domäne werden dann jeweils eine Gruppe für Benutzer und eine für Subjekte dieser Domäne erstellt. 
 Die Benutzer besitzen die Mitgliedschaft in der Gruppe, die ihrer Domäne entspricht.
 
@@ -359,9 +359,9 @@ Damit ist es für Benutzer aus einer Domäne möglich, Subjekte in der entsprechend
 Die Relationen zwischen den Gruppen der Subjekte und den Gruppen der Objekte werden dann entsprechend der DTE Matrix definiert.
 
 
-\subsection{Role-Based Access Control in $g-SIS^c$}
-Außer LBAC und DTE kann auch Core RBAC in $g-SIS^c$ modelliert werden. Jedoch ist das Ziel von $g-SIS^c$ das Teilen von Informationen mit einem Fokus auf die Lese- und Schreibrechte eines Objekts.
-Da RBAC jedoch auch abstraktere Zugriffsrechte ermöglicht, ist es nicht sinnvoll dies direkt in $g-SIS^c$ zu modellieren. 
+\subsection{Role-Based Access Control in g-SIS$^c$}
+Außer LBAC und DTE kann auch Core RBAC in g-SIS$^c$ modelliert werden. Jedoch ist das Ziel von g-SIS$^c$ das Teilen von Informationen mit einem Fokus auf die Lese- und Schreibrechte eines Objekts.
+Da RBAC jedoch auch abstraktere Zugriffsrechte ermöglicht, ist es nicht sinnvoll dies direkt in g-SIS$^c$ zu modellieren. 
 Daher sollen in dieser Betrachtung die Zugriffsrechte von Objekten auf Lese- und Schreibrechte beschränkt sein.
 Es sei ein RBAC Modell mit den Rollen Manager und Experte gegeben. Die Rolle Manager hat Read und Write Zugriffsrechte auf das Objekt Bericht 1 und die 
 Rolle Experte hat Read und Write Zugriffsrechte auf das Objekt Bericht 2.
@@ -369,19 +369,19 @@ Dieses Modell ist in Abbildung \ref{img_rbac1} veranschaulicht.
 
 \begin{figure}[htb] 
 \centerline{\includegraphics*[width=0.8\textwidth]{rbac_modell}}
-\caption{Ein Beispiel $RBAC_0$ Modell mit Lese- und Schreibrechten auf zwei Objekte} 
+\caption{Ein Beispiel RBAC$_0$ Modell mit Lese- und Schreibrechten auf zwei Objekte} 
 \label{img_rbac1}
 \end{figure}
 
 Soll dieses Modell nun in g-SIS konfiguriert werden, so muss zunächst für jede Rolle eine eigene Gruppe erstellt werden.
 Diese Gruppen repräsentieren die Zuordnung der Benutzer zu ihren Rollen. Jeder Benutzer darf jedoch nur in einer dieser Gruppen Mitglied sein.
 Da es in RBAC jedoch möglich ist, mehr als einer Rolle zuzugehören, müssen die Kombinationen der Rollen ebenfalls als Gruppen angelegt werden.
-In Abbildung \ref{img_rbac2} ist die resultierende g-SIS Konfiguration des $RBAC_0$ Modells dargestellt.
+In Abbildung \ref{img_rbac2} ist die resultierende g-SIS Konfiguration des RBAC$_0$ Modells dargestellt.
 Im Beispiel resultieren aus diesem Schritt die Gruppen Manager\_G, Experte\_G und als Kombination ManagerExperte\_G.
 
 \begin{figure}[htb] 
 \centerline{\includegraphics*[width=0.8\textwidth]{rbac_gsis}}
-\caption{Die äquivalente g-SIS Konfiguration des $RBAC_0$ Modells} 
+\caption{Die äquivalente g-SIS Konfiguration des RBAC$_0$ Modells} 
 \label{img_rbac2}
 \end{figure}
 
