@@ -17,7 +17,7 @@
 % --> Bitte den Titel des Beitrages in die nächste Zeile eintragen:
 \title{IT-Sicherheitsmanagement Seminar: Group-Centric Models for Secure Information Sharing (g-SIS)}
 
-\newtheorem{definition} [Definition]%
+\newtheorem{definition} {Definition}%
 % --> ... und den Namen des Autors:
 \author{Uwe Kühn, Tobias Pöppke}
 % --> optional eine URL mailto:... oder http://www...
@@ -207,8 +207,8 @@ die als \emph{Permission Assignment (PA)} bezeichnet wird.
 Ein weiteres Konzept das in RBAC benutzt wird, sind \emph{Sessions}. 
 Ein Benutzer kann einer oder mehreren Sessions zugeordnet sein und jede Session ist genau einem Benutzer zugeordnet.
 In jeder Session kann wiederum eine Untermenge der Rollen, denen der Benutzer angehört, aktiviert sein.
-Welche Rollen, und damit auch welche Zugriffsrechte, in einer Session aktiviert sind, kann durch die Funtktion \emph{session_roles} abgefragt werden.
-Um zu erfahren, welche Sessions zu einem Benutzer gehören, kann die Funktion \emph{user_sessions} aufgerufen werden.
+Welche Rollen, und damit auch welche Zugriffsrechte, in einer Session aktiviert sind, kann durch die Funktion \emph{session\_roles} abgefragt werden.
+Um zu erfahren, welche Sessions zu einem Benutzer gehören, kann die Funktion \emph{user\_sessions} aufgerufen werden.
 
 Die obigen Eigenschaften beschreiben \emph{Core RBAC} beziehungsweise \emph{$RBAC_0$}. Formal kann damit Core RBAC wie folgt definiert werden.
 \begin{definition} [Core RBAC]
@@ -224,7 +224,7 @@ Die obigen Eigenschaften beschreiben \emph{Core RBAC} beziehungsweise \emph{$RBA
 \item \emph{SESSIONS}: Menge der Sessions.
 \item \emph{$user\_sessions(u: Users) \rightarrow 2^{SESSIONS}$}: Zuordnung eines Benutzers \emph{u} zu einer Menge von Sessions.
 \item \emph{$session\_roles(s: SESSIONS) \rightarrow 2^{ROLES}, session\_roles(s_i) \subseteq \{r \in ROLES | (session\_users(si), r) \in UA\}$}: Zuordnung einer Session \emph{s} zu der zugehörigen Menge von Rollen.
-\item \emph{$avail\_session\_perms(s: SESSIONS) \rightarrow 2^{PRMS}$, \bigcup{r \in sesseion\_roles(s)}{assigned\permissions(r)}}: Die Zugriffsrechte, die einem Benutzer in einer Session zur Verfügung stehen.
+\item \emph{$avail\_session\_perms(s: SESSIONS) \rightarrow 2^{PRMS}, \bigcup{r \in session\_roles(s)}{assigned\_permissions(r)}$}: Die Zugriffsrechte, die einem Benutzer in einer Session zur Verfügung stehen.
 \end{itemize}
 \end{definition}
 
