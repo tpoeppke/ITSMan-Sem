@@ -157,7 +157,7 @@ und den zugrunde liegenden Ideen betrachtet.
 \subsection{Lattice-Based Access Control}
 \label{lbac}
 Eine wichtige Klasse von Zugriffskontrollmodellen sind \emph{Lattice-Based Access Control (LBAC)} Modelle.
-Die Grundlagen von LBAC wurden in den 1970ern von Bell, LaPadula, Biba und Denning gelegt und entstanden 
+Die Grundlagen von LBAC wurden in den 1970ern von Bell, LaPadula, Biba und Denning gelegt und entstand 
 aus den Bedürfnissen des Verteidigungssektors. Eine Übersicht über die verschiedenen Modelle 
 und formale Definitionen, sowie weiterführende Referenzen finden sich bei Sandhu \cite{lbac2}.
 
@@ -165,12 +165,12 @@ LBAC Modelle konzentrieren sich auf die Betrachtung des Informationsflusses zwis
 Dazu wird jedem \emph{Objekt} des Systems eine \emph{Sicherheitsklasse} zugewiesen. 
 Ein \emph{Objekt} sei hier informell definiert als ein Container für Informationen.
 Wenn nun die Informationen eines Objekts \emph{x} zu einem Objekt \emph{y} fließen geht 
-damit ein Informationsfluss einher. Dieser Informationsfluss findet zwischen den 
+damit ein \emph{Informationsfluss} einher. Dieser Informationsfluss findet zwischen den 
 Sicherheitsklassen der jeweiligen Objekte statt.
 
-Die \emph{Richtlinien} mit denen die Informationsflüsse beschrieben werden, können mithilfe von \emph{Lattices} beschrieben werden.
-Ein \emph{Lattice} ist in diesem Zusammenhang die partiell geordnete Menge der Sicherheitsklassen. 
-Jedem Objekt wird eine Sicherheitsklasse zugewiesen. Im Modell von Bell und LaPadula gelten dann Beispielsweise die folgenden Aussagen.
+Die \emph{Richtlinien} mit denen die zulässigen Informationsflüsse beschrieben werden, können mithilfe von \emph{Lattices} beschrieben werden.
+Ein \emph{Lattice} ist in diesem Zusammenhang eine partiell geordnete Menge der Sicherheitsklassen. 
+Jedem Objekt wird dann eine Sicherheitsklasse zugewiesen. Im Modell von Bell und LaPadula gelten beispielsweise die folgenden Aussagen.
 Benutzer können \emph{Subjekte}, wie zum Beispiel einen Prozess, erstellen, die eine Sicherheitsklasse besitzen, 
 die von der Sicherheitsklasse des Benutzers im Lattice dominiert wird. 
 Ein Subjekt kann genau dann Objekte lesen, wenn die Sicherheitsklasse des Objekts von der des Subjekts dominiert wird.
@@ -178,13 +178,13 @@ Auf ein Objekt schreibend zugreifen kann ein Subjekt genau dann, wenn die Sicher
 
 \subsection{Domain and Type Enforcement}
 \label{dte}
-Die Idee des \emph{Domain and Type Enforcement (DTE)}, von Badger et al. vorgeschlagen \cite{dte}, ist eine Erweiterung der Lattice-Based Access Control um \emph{Domänen} und \emph{Typen}.
-Eine \emph{Domäne} enthält Subjekte und Objekte werden zu \emph{Typen} zugeordnet. 
-Um den Informationsfluss zu kontrollieren, wird eine Matrix benutzt, 
+Die Idee des \emph{Domain and Type Enforcement (DTE)}, von Badger et al. vorgeschlagen \cite{dte}, ist eine Erweiterung der Lattice-Based Access Control Modelle um \emph{Domänen} und \emph{Typen}.
+Eine \emph{Domäne} ist äquivalent zur Sicherheitsklasse eines Subjekts in LBAC und die Sicherheitsklasse eines Objektes in LBAC wird als \emph{Typ} definiert. 
+Subjekte werden daher in Domänen eingeteilt und Objekte in Typen. Um nun den Informationsfluss zu kontrollieren, wird eine Matrix benutzt, 
 in der die Lese- und Schreibrechte für jede Kombination von Domäne und Typ festgelegt werden.
 Diese Art der Zugriffskontrolle ist beispielsweise dann anwendbar, 
 wenn es gewünscht ist, vertrauenswürdige Pipelines zu etablieren. 
-Wenn zum Beispiel gewünscht wird, dass Informationen nur über ein Subjekt einer 
+Wenn es zum Beispiel nötig ist, dass Informationen nur über ein Subjekt einer 
 dritten Domäne zum Zielobjekt fließen dürfen, ist dies mit klassischen LBAC-Modellen nicht möglich.
 Dies liegt an der transitiven Natur der zugrundeliegenden Relation in LBAC. 
 
@@ -192,32 +192,32 @@ Da die im Lattice höher angesiedelten Sicherheitsklassen in LBAC alle unter ihne
 liegenden Sicherheitsklassen dominieren und diese Relation transitiv ist, kann Information immer 
 von allen dominierten Sicherheitsklassen direkt in die dominierende Sicherheitsklasse fließen.
 Da bei DTE eine Matrix den zulässigen Informationsfluss definiert, 
-ist diese Relation nicht länger transitiv und die Informationen können nach Wunsch über verschiedene Wege fließen.
+ist diese Relation nicht länger transitiv und die Informationen können nach Wunsch über verschiedene Wege geleitet werden.
 
 \subsection{Role-Based Access Control}
 \label{rbac}
 \emph{Role-Based Access Control (RBAC)} ist ein Zugriffskontrollmodel, dass von Sandhu et al. und Ferraiolo et al. vorgeschlagen wurde \cite{sandhu96, ferraiolo2001proposed}.
 Ein Benutzer sei im Folgenden, ohne Beschränkung der Allgemeinheit, definiert als ein menschlicher Benutzer.
-Das Hauptmerkmal von RBAC sind \emph{Rollen}. Eine Rolle basiert auf der Idee eine Position innerhalb einer Organisation darzustellen, 
+Das Hauptmerkmal von RBAC sind \emph{Rollen}. Eine Rolle basiert auf der Idee, eine Position innerhalb einer Organisation darzustellen, 
 die mit bestimmten Rechten und Verantwortlichkeiten einhergeht. 
 Daher werden jeder Rolle bestimmte \emph{Zugriffsrechte} auf \emph{Objekte} zugewiesen, wobei ein \emph{Objekt} Informationen bereitstellen oder erhalten kann.
 Ein \emph{Zugriffsrecht} gewährt einer Rolle die Möglichkeit eine oder mehrere \emph{Operationen} auf einem oder mehreren Objekten auszuführen.
 
 Ein Benutzer kann in RBAC mehreren Rollen zugehören und eine Rolle kann ebenfalls mehreren Benutzern zugeordnet sein.
 Diese Relation wird als \emph{User Assignment (UA)} bezeichnet. 
-Genau so können auch Zugriffsrechte zu Rollen in einer many-to-many Relation zugewiesen werden, 
-die als \emph{Permission Assignment (PA)} bezeichnet wird.
+Genau so können auch mehrere Zugriffsrechte zu mehreren Rollen und umgekehrt, zugewiesen werden. 
+Diese Relation wir als \emph{Permission Assignment (PA)} bezeichnet.
 
 Ein weiteres Konzept das in RBAC benutzt wird, sind \emph{Sessions}. 
 Ein Benutzer kann einer oder mehreren Sessions zugeordnet sein und jede Session ist genau einem Benutzer zugeordnet.
-In jeder Session kann wiederum eine Untermenge der Rollen, denen der Benutzer angehört, aktiviert sein.
-Welche Rollen, und damit auch welche Zugriffsrechte, in einer Session aktiviert sind, kann durch die Funktion \emph{session\_roles} abgefragt werden.
+In jeder Session kann wiederum eine Untermenge der Rollen, denen der Benutzer angehört, aktiv sein.
+Welche Rollen, und damit auch welche Zugriffsrechte, in einer Session aktiv sind, kann durch die Funktion \emph{session\_roles} abgefragt werden.
 Um zu erfahren, welche Sessions zu einem Benutzer gehören, kann die Funktion \emph{user\_sessions} aufgerufen werden.
 
 Die obigen Eigenschaften beschreiben \emph{Core RBAC} beziehungsweise \emph{RBAC$_0$}. Formal kann damit Core RBAC wie folgt definiert werden.
 \begin{definition} [Core RBAC] \ \\
 \begin{itemize}
-\item \emph{USERS, ROLES, OPS und OBS}: Mengen der Benutzer, Rollen, Operationen und Objekten.
+\item \emph{USERS, ROLES, OPS und OBS}: Mengen der Benutzer, Rollen, Operationen und Objekte.
 \item \emph{$UA \subseteq USERS \times ROLES$}: Menge der Zuweisungen von Benutzern zu Rollen.
 \item \emph{$assigned\_users: (r: ROLES) \rightarrow 2^{USERS}, assigned\_users(r) = \{u \in USERS | (u, r) \in UA\}$}: Zuordnung der Rolle \emph{r} zu der zugehörigen Menge der Benutzer.
 \item \emph{$PRMS = 2 ^ {(OPS \times OBS)}$}: Menge der Zugriffsrechte.
@@ -271,14 +271,15 @@ Das isolierte undifferenzierte Modell bildet damit die Grundlage für die anderen
 
 Im \emph{verbundenen undifferenzierten Modell} (im Folgenden g-SIS$^c$) kann die Mitgliedschaft in einer Gruppe 
 verschiedene Auswirkungen auf andere Gruppen haben, die im folgenden Abschnitt genauer betrachtet werden.
-Desweiteren haben die Mitglieder untereinander, wie im isolierten undifferenzierten Modell, die selben Zugriffsrechte.
+Des weiteren haben die Mitglieder untereinander, wie im isolierten undifferenzierten Modell, die selben Zugriffsrechte.
 In Abbildung \ref{img_models} sind die Beziehungen zwischen den einzelnen 
 g-SIS Modellen grafisch dargestellt. Das isoliert undifferenzierte Modell ist in allen anderen Modellen enthalten.
 Das isoliert differenzierte Modell und das verbunden undifferenzierte Modell sind in diesem Sinne nicht vergleichbar.
 Das verbunden differenzierte Modell wiederum enthält alle anderen Modelle. 
 
+Analog dazu lassen sich das verbunden differenzierte Modell und das isoliert differenzierte Modell beschreiben.
 Im Folgenden soll allerdings lediglich das verbunden undifferenzierte Modell betrachtet werden, 
-da dies ausreicht um Aussagen über die Relationen zwischen Gruppen machen zu können. 
+da dies ausreicht, um Aussagen über die Relationen zwischen Gruppen zu machen. 
 
 \begin{figure}[htb] 
 \centerline{\includegraphics*[width=0.8\textwidth]{gsis_modelle}}
@@ -289,13 +290,14 @@ da dies ausreicht um Aussagen über die Relationen zwischen Gruppen machen zu kön
 \subsection{Relationen zwischen Gruppen}
 Im verbunden undifferenzierten g-SIS Modell werden verschiedene Relationen für die Verbindungen zwischen einzelnen Gruppen vorgeschlagen.
 Die betrachteten Entitäten sind wiederum Benutzer, denen ein gewisses Vertrauen entgegengebracht wird, sowie Subjekte und Objekte.
-Subjekte, wie Prozesse, die von einem Benutzer erstellt werden, müssen nicht notwendig die selben Rechte besitzen wie der Benutzer, der sie erstellt hat.
+Subjekte, wie zum Beispiel Prozesse, die von einem Benutzer erstellt werden, müssen nicht notwendig die selben Rechte besitzen wie der Benutzer, der sie erstellt hat.
+Da ein Subjekt potentiell schädlichen Code ausführen könnte, beispielsweise im Falle eines Virus, ist es sinnvoll Subjekte mit beschränkten Privilegien erstellen zu können.
 
 Die folgenden Relationen zwischen Gruppen wurden vorgeschlagen:
 
 \begin{figure}[htb] 
 \centerline{\includegraphics*[width=0.8\textwidth]{rel_beispiel}}
-\caption{Ein Beispiel für die Relationen zwischen den Gruppen eines Meetings}
+\caption{Ein Beispiel für die möglichen Relationen zwischen Gruppen}
 \label{img_rel}
 \end{figure}
 
@@ -307,10 +309,10 @@ In der Konfiguration aus Abbildung \ref{img_rel} wird zum Beispiel durch die Def
 dass ein Benutzer nur Mitglied in der Meeting-Gruppe sein kann, wenn er Mitglied in einer der Gruppen Manager, Experten 1 oder Experten 2 ist.
 
 \item Subordination: Diese Relationen definieren die Dominanz einer Gruppe über eine andere in verschiedenen Aspekten. 
-Wie die Conditional Membership ist auch diese Relation reflexiv, aber nicht transitiv oder symmetrisch.
+Wie die Conditional Membership ist auch diese Relation lediglich als reflexiv definiert , aber nicht als transitiv oder symmetrisch.
 \begin{itemize}
 \item Create Subordination (subordC): Benutzer aus der dominierenden Gruppe können Subjekte in der dominierten Gruppe erstellen. 
-Die Definition von subordC(Meeting, Beschlüsse) erlaubt das Erstellen von Subjekten in der Gruppe Beschlüsse durch Benutzer aus Meeting.
+Die Definition der Relation subordC(Meeting, Beschlüsse) erlaubt das Erstellen von Subjekten in der Gruppe Beschlüsse durch Benutzer aus Meeting.
 \item Read Subordination (subordR): Subjekte aus der dominierenden Gruppe können Objekte in der dominierten Gruppe lesen. 
 Durch subordR(Meeting, Beschlüsse) können Subjekte in Meeting auf Objekte in Beschlüsse lesend zugreifen.
 \item Write Subordination (subordW): Subjekte aus der dominierenden Gruppe können auf Objekte in der dominierten Gruppe schreibend zugreifen.
@@ -320,7 +322,7 @@ Mit subordM(Experten 1, Meeting) kann ein Subjekt aus Experten 1 in die Meeting 
 \end{itemize}
 
 \item Mutual Exclusion: Zwei Gruppen können als sich gegenseitig ausschließend definiert werden. 
-Das führt dazu, dass Benutzer oder Objekte nicht zur gleichen Zeit in Mitglied in beiden Gruppen sein dürfen.
+Das führt dazu, dass Benutzer oder Objekte nicht zur gleichen Zeit Mitglied in beiden Gruppen sein dürfen.
 Es ist jedoch möglich dieses Kriterium als dynamisch zu definieren, wodurch es möglich wird, dass ein Benutzer zwar Mitglied in beiden Gruppen ist, 
 jedoch nicht in beiden Gruppen zur selben Zeit Subjekte erstellen kann.
 
@@ -341,7 +343,7 @@ Wie weiter oben schon erwähnt, reicht es hier und im Folgenden aus, das verbunde
 In g-SIS$^c$ können LBAC Richtlinien, wie zum Beispiel das Bell-LaPadula Modell, modelliert werden. 
 Um ein bestehendes Bell-LaPadula System in g-SIS$^c$ zu konstruieren, muss für jede Sicherheitsklasse in LBAC eine Gruppe in g-SIS$^c$ erstellt werden.
 Für jede Sicherheitsklasse H, die eine Sicherheitsklasse L im Sinne von LBAC dominiert, müssen für die zugehörigen Gruppen G\_H und G\_L die Relationen subordR(G\_L, G\_H), 
-subordC(G\_L, G\_H) und subordW(G\_H, G\_L). Da die Relationen in LBAC jedoch transitiv sind, muss darauf geachtet werden, 
+subordC(G\_L, G\_H) und subordW(G\_H, G\_L) festgelegt werden. Da die Relationen in LBAC jedoch transitiv sind, muss darauf geachtet werden, 
 diesen Schritt auch mit jeder Sicherheitsklasse zu wiederholen, die L dominiert. Für ein Beispiel dieser Transformation sei hier auf Sandhu et al. \cite{gsis2} verwiesen.
 
 Für den Fall, dass zwei Organisationen mit unterschiedlichen LBAC Lattices Informationen austauschen wollen, kann dies im 
@@ -350,15 +352,16 @@ ist es beispielsweise möglich alle Objekte mit Sicherheitsklasse L in Organisati
 Dazu muss lediglich die Relation subordR(G\_B\_TS, G\_A\_L) definiert werden.
 
 \subsection{Domain and Type Enforcement in g-SIS$^c$}
-Wie in Abschnitt \ref{dte} beschrieben, ist es mit klassischen LBAC Richtlinien nicht möglich bestimmte Anforderungen an den Informationsfluss zu erfüllen.
+Wie in Abschnitt \ref{dte} beschrieben, ist es mit klassischen LBAC Richtlinien nicht möglich bestimmte Anforderungen an den Informationsfluss innerhalb eines Systems zu erfüllen.
 Dieses Problem kann mit DTE gelöst werden und DTE wiederum kann in g-SIS$^c$ modelliert werden.
-Um eine vorhandene DTE Konfiguration in g-SIS$^c$ zu überführen werden zunächst Gruppen für alle möglichen Typen erstellt, in denen sich die Objekte befinden.
+Um eine vorhandene DTE Konfiguration in g-SIS$^c$ zu überführen werden zunächst Gruppen für alle in DTE vorhandenen Typen erstellt, in denen sich die Objekte befinden.
 Für jede Domäne werden dann jeweils eine Gruppe für Benutzer und eine für Subjekte dieser Domäne erstellt. 
-Die Benutzer besitzen die Mitgliedschaft in der Gruppe, die ihrer Domäne entspricht.
+Die Benutzer besitzen die Mitgliedschaft in der Gruppe, die ihrer Domäne in DTE entspricht.
 
 Für jede Domänengruppe mit Benutzern muss eine subordC Relation zur zugehörigen Gruppe der Subjekte dieser Domäne definiert werden.
 Damit ist es für Benutzer aus einer Domäne möglich, Subjekte in der entsprechenden Domäne zu erstellen. 
 Die Relationen zwischen den Gruppen der Subjekte und den Gruppen der Objekte werden dann entsprechend der DTE Matrix definiert.
+Damit haben die Subjekte Zugriff auf die Objekte, auf die sie nach der DTE Matrix zugreifen dürfen.
 
 
 \subsection{Role-Based Access Control in g-SIS$^c$}
@@ -377,7 +380,7 @@ Dieses Modell ist in Abbildung \ref{img_rbac1} veranschaulicht.
 
 Soll dieses Modell nun in g-SIS konfiguriert werden, so muss zunächst für jede Rolle eine eigene Gruppe erstellt werden.
 Diese Gruppen repräsentieren die Zuordnung der Benutzer zu ihren Rollen. Jeder Benutzer darf jedoch nur in einer dieser Gruppen Mitglied sein.
-Da es in RBAC jedoch möglich ist, mehr als einer Rolle zuzugehören, müssen die Kombinationen der Rollen ebenfalls als Gruppen angelegt werden.
+Da es in RBAC jedoch möglich ist, mehr als einer Rolle zuzugehören, müssen alle Kombinationen der Rollen ebenfalls als eigene Gruppen angelegt werden.
 In Abbildung \ref{img_rbac2} ist die resultierende g-SIS Konfiguration des RBAC$_0$ Modells dargestellt.
 Im Beispiel resultieren aus diesem Schritt die Gruppen Manager\_G, Experte\_G und als Kombination ManagerExperte\_G.
 
@@ -388,23 +391,25 @@ Im Beispiel resultieren aus diesem Schritt die Gruppen Manager\_G, Experte\_G un
 \end{figure}
 
 Im nächsten Schritt müssen Gruppen für die möglichen Sessions angelegt werden. Dabei muss berücksichtigt werden, 
-dass es möglich ist, dass eine Session keine aktivierten Rollen besitzt. 
-Es muss also wiederum für jede möglche Kombination von aktivierten Rollen in einer Session eine Gruppe erstellt werden.
-Damit ergibt sich im Beispiel die Gruppe KeineRollen\_S, für eine Session ohne aktive Rollen. Desweiteren Manager\_S und Experte\_S, 
-für Sessions in denen die Manager oder die Experten Rolle aktiv ist, sowie die Gruppe ManagerExperte\_S für den Fall, dass beide Rollen aktiviert sind.
+dass es möglich ist, dass eine Session keine aktivierten Rollen besitzt. Damit ergibt sich im Beispiel die Gruppe KeineRollen\_S, für eine Session ohne aktive Rollen.
+Außerdem muss wiederum für jede mögliche Kombination von aktiven Rollen in einer Session eine Gruppe erstellt werden.
+Das führt zu den Manager\_S und Experte\_S Gruppen, die Sessions darstellen, in denen die Manager oder die Experten Rolle aktiv ist, 
+sowie die Gruppe ManagerExperte\_S für den Fall, dass beide Rollen aktiviert sind.
 
 Benutzer müssen in der Lage sein Subjekte in diesen Gruppen zu erstellen. Daher sind subordC Relationen zwischen den Rollengruppen und den Sessiongruppen definiert.
-Es muss außerdem in einer Session möglich sein Rollen zu aktivieren oder zu deaktivieren. Dazu müssen symmetrische subordM Relationen zwischen allen Sessiongruppen definiert werden.
-Das erlaubt den Subjekten die aktivierten Rollen zu ändern. Dies sollte jedoch nur möglich sein, wenn der Benutzer, der das Subjekt erstellt hat, 
-auch den entsprechenden Rollen zugeordnet ist. Der Einfachheit halber soll hier jedoch auf diese Bedingungen nicht weiter eingegangen werden.
+Es muss außerdem in einer Session möglich sein, Rollen zu aktivieren oder zu deaktivieren. Dazu müssen symmetrische subordM Relationen zwischen allen Sessiongruppen definiert werden.
+Das erlaubt den Subjekten die aktivierten Rollen zu ändern, indem sie in die entsprechende Sessiongruppe wechseln. 
+Dies sollte jedoch nur möglich sein, wenn der Benutzer, der das Subjekt erstellt hat, auch den entsprechenden Rollen zugeordnet ist. 
+Der Einfachheit halber soll hier jedoch auf diese notwendigen Bedingungen nicht weiter eingegangen werden.
 
 Als letzter Schritt müssen nun noch Gruppen für die Objekte gebildet werden. Jedes Objekt benötigt eine Gruppe für jedes Zugriffsrecht. 
 Daher ergeben sich die Gruppen Read\_Bericht1 und Write\_Bericht1, sowie Read\_Bericht2 und Write\_Bericht2.
-Für jede Session werden dann entsprechend der aktiven Rollen die subordR und subordW Relationen zu den Objektgruppen definiert.
+Für jede Session werden dann entsprechend der Zugriffsrechte der aktiven Rollen die subordR und subordW Relationen zu den Objektgruppen definiert.
+Die daraus resultierende g-SIS Konfiguration ist in Abbildung \ref{rbac_gsis} dargestellt.
 
 \section{Fazit}
 \label{summary}
-Mit der Einführung von g-SIS wurde ein Konzept zur Zugriffskontrolle vorgeschlagen, dass für einige Anwendungen Vorteile bietet.
+Mit der Einführung von g-SIS wurde ein Konzept zur Zugriffskontrolle vorgeschlagen, dass für einige Anwendungsgebiete Vorteile bietet.
 Wie gezeigt wurde, ist es möglich mit g-SIS verschiedene klassische Zugriffskontrollmodelle zu modellieren.
 Außerdem ist es mit g-SIS möglich diese klassischen Modelle um Funktionen zu erweitern, die sonst nicht, oder nur mit einigem Aufwand möglich wären.
 Dies zeigt, dass g-SIS ein sehr flexibles Modell ist, das in der Lage ist, sehr feingranular auf die Bedürfnisse der Benutzer einzugehen.
@@ -412,15 +417,15 @@ Außerdem ergibt sich durch die Berücksichtigung des zeitlichen Aspekts eine neue
 die in einigen Anwendungsgebieten Vorteile gegenüber den klassischen Modellen hat.
 
 Jedoch ergeben sich durch die Möglichkeiten der feingranularen Anpassungsmöglichkeiten auch Schwierigkeiten.
-Werden beispielsweise klassische Zugriffskontrollmodelle mit g-SIS modelliert, werden für vergleichsweise einfache Modelle wie RBAC 
+Werden beispielsweise klassische Zugriffskontrollmodelle mit g-SIS modelliert, werden für vergleichsweise einfache Modelle, wie das RBAC Beispiel,
 schnell sehr viele Gruppen benötigt. Das führt dazu, dass die Administration eines solchen Systems bei einer großen Anzahl von Benutzern und Gruppen 
 sehr komplex werden kann. Durch den zeitlichen Aspekt wird dieses Problem noch verstärkt, da eventuell durch das Ausnutzen von Schwachstellen 
 in der Konfiguration mit der Zeit Beschränkungen umgangen werden könnten.
 
 Desweiteren ist uns kein System bekannt, das g-SIS in der Praxis einsetzt. Da lediglich die Policy Ebene untersucht wurde,
-bleiben Dinge wie die konkrete Implementierung der Maßnahmen durch kryptographische Bausteine, das zugehörige Key Management oder Laufzeiten von Operationen unbetrachtet.
+bleiben Dinge wie die konkrete Implementierung der Maßnahmen durch kryptographische Bausteine, das zugehörige Key Management oder Laufzeiten von Operationen unbeachtet.
 Abschließend lässt sich sagen, dass g-SIS ein interessantes Konzept ist, das in bestimmten Bereichen und Anwendungsgebieten 
-sinnvoll einsetzbar sein könnte.
+sinnvoll einsetzbar sein könnte. Es ist jedoch noch weitere Arbeit nötig, um das System zu formalisieren und praktisch anwendbar zu machen.
 
 % \label{tmp_Subsection}
 % Dies ist ein Unterabschnitt. Mit \LaTeX\ kann man auch prima Tabellen (siehe
