@@ -91,7 +91,7 @@
  für unterschiedliche Nutzer ermöglicht werden. Weiterhin sollen verschiedene Benutzer zu Gruppen zusammengefasst werden können. 
  Ähnlich wie Benutzer sollen sich auch mehrere Informationen zu einer Informationsgruppe verknüpfen lassen, für die dann einheitliche Zugriffsrichtlinien 
  definiert werden können. In der Vergangenheit sind hierzu eine Vielzahl von Systemen entwickelt worden, die sich mit diesen Problemstellungen beschäftigen. 
- Bei einigen Anwendungsszenarien stoßen diese Systeme jedoch an Ihre Grenzen. So fehlt letztlich ich allen verbreiteten Systemen der Zeitbezug. 
+ Bei einigen Anwendungsszenarien stoßen diese Systeme jedoch an Ihre Grenzen. So fehlt letztlich in allen verbreiteten Systemen der Zeitbezug. 
  Doch gerade der ist sehr wichtig für viele aktuelle Anwendungsfälle, wie z.B. Aboservices für IT-Produkte wie Online Video und Musik-Plattformen 
  mit bezahltem Content und zeitlich beschränkter Nutzung. In dieser Arbeit werden in Kapitel 2 zuerst einige weit verbreiteten Zugriffsmechanismen untersucht, 
  dann die Grenzen dieser Systeme vor allem in Bezug auf aktuelle Anwendungsszenarien aufgezeigt und dann mit Kapitel 3 ein neues System vorgestellt, 
@@ -265,7 +265,7 @@ Im weiteren Verlauf wird diese LTL bezeichnet. Die Notationen für die herkömmlic
 etc. werden als bekannt vorausgesetzt. Andere Operatoren sind jedoch etwas spezieller und werden im Zusammenhang mit g-SIS häufig benutzt und hier deswegen 
 explizit erklärt. Die Operatoren lassen sich hierbei grob nach zwei Merkmalen kategorisieren. Das erste Merkmal ist dabei die Anzahl der Operanden, 
 hiernach kann man in unäre und binäre Operatoren unterteilen. Das zweite Merkmal ist der Zeitbezug, 
-wonach sich mit LTL Aussagen in zunkunftsbezogene und Vergangenheitsbezogene Aussagen unterteilen lassen.
+wonach sich mit LTL Aussagen in zunkunftsbezogene und vergangenheitsbezogene Aussagen unterteilen lassen.
 
 
 \subsection{LTL -Operatoren}
@@ -483,7 +483,7 @@ In der Konfiguration aus Abbildung \ref{img_rel} wird zum Beispiel durch die Def
 dass ein Benutzer nur Mitglied in der Meeting-Gruppe sein kann, wenn er Mitglied in einer der Gruppen Manager, Experten 1 oder Experten 2 ist.
 
 \item Subordination: Diese Relationen definieren die Dominanz einer Gruppe über eine andere in verschiedenen Aspekten. 
-Wie die Conditional Membership ist auch diese Relation lediglich als reflexiv definiert , aber nicht als transitiv oder symmetrisch.
+Wie die Conditional Membership ist auch diese Relation lediglich als reflexiv definiert, aber nicht als transitiv oder symmetrisch.
 \begin{itemize}
 \item Create Subordination (subordC): Benutzer aus der dominierenden Gruppe können Subjekte in der dominierten Gruppe erstellen. 
 Die Definition der Relation subordC(Meeting, Beschlüsse) erlaubt das Erstellen von Subjekten in der Gruppe Beschlüsse durch Benutzer aus Meeting.
@@ -579,7 +579,6 @@ Der Einfachheit halber soll hier jedoch auf diese notwendigen Bedingungen nicht 
 Als letzter Schritt müssen nun noch Gruppen für die Objekte gebildet werden. Jedes Objekt benötigt eine Gruppe für jedes Zugriffsrecht. 
 Daher ergeben sich die Gruppen Read\_Bericht1 und Write\_Bericht1, sowie Read\_Bericht2 und Write\_Bericht2.
 Für jede Session werden dann entsprechend der Zugriffsrechte der aktiven Rollen die subordR und subordW Relationen zu den Objektgruppen definiert.
-Die daraus resultierende g-SIS Konfiguration ist in Abbildung \ref{rbac_gsis} dargestellt.
 
 \section{Fazit}
 \label{summary}
