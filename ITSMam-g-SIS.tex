@@ -82,19 +82,19 @@
 \section{Einleitung} % in die Klammern die Ueberschrift 
  \label{Introduction} % und ein Label
  
- Durch die stetige Zunahme des Informations- und Kommunikationshunges der Gesellschaft ist auch der Bedarf an sicheren Kommunikationskanälen gewachsen. 
+ Durch die stetige Zunahme des Informations- und Kommunikationshungers der Gesellschaft ist auch der Bedarf an sicheren Kommunikationskanälen gewachsen. 
  Denn auch wenn ein Großteil der im Internet verfügbaren Information jedem zugänglich sein soll, 
  gibt es doch immer wieder auch Information die nur für den Zugriff durch einen bestimmten Personenkreis über das Netzwerk bestimmt ist. 
  Doch die Sicherheit im Hinblick auf den Zugang zu diesen Informationen erstreckt sich nicht nur auf den Zugangskanal, 
- sondern auch über das damit in Verbindung stehende Berechtigungssystem. So muss für viele monderne Anwendungen die auf verteilten Informationen 
+ sondern auch über das damit in Verbindung stehende Berechtigungssystem. So muss für viele aktuelle Anwendungen die auf verteilten Informationen 
  aufbauen nicht nur ein einfacher und sicherer Zugang zu diesen Informationen ermöglicht werden, sondern es müssen auch unterschiedliche Berechtigungen 
  für unterschiedliche Nutzer ermöglicht werden. Weiterhin sollen verschiedene Benutzer zu Gruppen zusammengefasst werden können. 
  Ähnlich wie Benutzer sollen sich auch mehrere Informationen zu einer Informationsgruppe verknüpfen lassen, für die dann einheitliche Zugriffsrichtlinien 
  definiert werden können. In der Vergangenheit sind hierzu eine Vielzahl von Systemen entwickelt worden, die sich mit diesen Problemstellungen beschäftigen. 
  Bei einigen Anwendungsszenarien stoßen diese Systeme jedoch an Ihre Grenzen. So fehlt letztlich ich allen verbreiteten Systemen der Zeitbezug. 
- Doch gerade der ist sehr wichtig für viele aktuelle Anwendungsfälle, wie z.B. Aboservices für IT-Produkte wie Online Video und Musik-Plattenformen 
+ Doch gerade der ist sehr wichtig für viele aktuelle Anwendungsfälle, wie z.B. Aboservices für IT-Produkte wie Online Video und Musik-Plattformen 
  mit bezahltem Content und zeitlich beschränkter Nutzung. In dieser Arbeit werden in Kapitel 2 zuerst einige weit verbreiteten Zugriffsmechanismen untersucht, 
- dann die Grenzen dieser Systeme vor allem in Bezug auf moderne Anwendungszenarien aufgezeigt und dann mit Kapitel 3 ein neues System vorgestellt, 
+ dann die Grenzen dieser Systeme vor allem in Bezug auf aktuelle Anwendungsszenarien aufgezeigt und dann mit Kapitel 3 ein neues System vorgestellt, 
  welches die Beschränkungen der herkömmlichen Systeme aufzuheben versucht. Es handelt sich dabei um das Group-Centric Secure Information Sharing (g-SIS) Modell, 
  und wurde von Krishnan et al. \cite{gsis1} sowie von Sandhu et al. \cite{gsis2} beschrieben. In Kapitel 4 schließlich gezeigt, 
  dass sich die bereits vorhandenen Modelle mittels g-SIS darstellen lassen, woran zuletzt Fazit und Ausblick der Arbeit in Kapitel 5 anknüpfen.
@@ -259,7 +259,13 @@ constrained RBAC. Für die Definitionen dieser Modelle sei an dieser Stelle jedoc
 \subsection{Linear Temporal Logic}
 \label{ltl}
 
-Wie auch die meisten anderen Zugriffsmechanismen bedient sich auch g-SIS zur grundlegenden Definition seiner Eigenschaften der Aussagenlogik. Um den zusätzlichen zeitlichen Aspekt zu berücksichtigen ist jedoch eine spezielle Form der Aussagenlogik nötig, die lineare temporale Logik. Im weiteren Verlauf wird diese LTL bezeichnet. Die Notationen für die herkömmlichen aussagenlogischen Verknüpfungen wie {$UND$} und {$ODER$} Operatoren, etc. werden als bekannt vorausgesetzt. Andere Operatoren sind jedoch etwas spezieller und werden im Zusammenhang mit g-SIS häufig benutzt und hier deswegen explizit erklärt. Die Operatoren lassen sich hierbei grob nach zwei Merkmalen kategorisieren. Das erste Merkmal ist dabei die Anzahl der Operanden, hiernach kann man in unäre und binäre Operatoren unterteilen. Das zweite Merkmal ist der Zeitbezug, es lassen sich mit LTL sowohl Aussagen über die Vergangenheit tätigen, als auch über die Zukunft.
+Wie auch die meisten anderen Zugriffsmechanismen bedient sich auch g-SIS zur grundlegenden Definition seiner Eigenschaften der Aussagenlogik. 
+Um den zusätzlichen zeitlichen Aspekt zu berücksichtigen ist jedoch eine spezielle Form der Aussagenlogik nötig, die lineare temporale Logik. 
+Im weiteren Verlauf wird diese LTL bezeichnet. Die Notationen für die herkömmlichen aussagenlogischen Verknüpfungen wie {$UND$} und {$ODER$} Operatoren, 
+etc. werden als bekannt vorausgesetzt. Andere Operatoren sind jedoch etwas spezieller und werden im Zusammenhang mit g-SIS häufig benutzt und hier deswegen 
+explizit erklärt. Die Operatoren lassen sich hierbei grob nach zwei Merkmalen kategorisieren. Das erste Merkmal ist dabei die Anzahl der Operanden, 
+hiernach kann man in unäre und binäre Operatoren unterteilen. Das zweite Merkmal ist der Zeitbezug, 
+wonach sich mit LTL Aussagen in zunkunftsbezogene und Vergangenheitsbezogene Aussagen unterteilen lassen.
 
 
 \subsection{LTL -Operatoren}
@@ -314,9 +320,10 @@ Hier ein kurzer Überblick über die Objekte oder Mengen, die g-SIS in seiner Spez
 
 {$USERS$}: Die unabgeschlossene Menge aller Nutzer. Hierbei kann es sich z.B. um Rechner oder Menschen handeln.
 
-{$OBS$}: Die unabgeschlossene Menge alle Objekte. Z. B. Dateien oder Rescourcen wie Drucker, Schnittstellen, etc.
+{$OBS$}: Die unabgeschlossene Menge alle Objekte. Z. B. Dateien oder Ressourcen wie Drucker, Schnittstellen, etc.
 
-{$OPS$}: Die abgeschlossene Menge aller Operationen. Der Einfachheit halber betrachten wir im Folgenden nur read und write Operationen, es ließen sich hier jedoch belieg viele weitere Operationen definieren, etwa das Anlegen von neuen Objekten, oder das Löschen von Objekten. 
+{$OPS$}: Die abgeschlossene Menge aller Operationen. Der Einfachheit halber betrachten wir im Folgenden nur read und write Operationen, es ließen sich hier jedoch beliebig viele weitere Operationen definieren, 
+etwa das Anlegen von neuen Objekten, oder das Löschen von Objekten. 
 
 {$AUTH$}: Die abgeschlossene Menge der Autorisationsstufen. Der Einfachheit halber wird hier nur ein binärer Autorisierungsmechanismus betrachtet.
 
@@ -325,7 +332,7 @@ Hier ein kurzer Überblick über die Objekte oder Mengen, die g-SIS in seiner Spez
 
 \begin{itemize}
 \item \emph{$Berechtigungsr$}ä{$ume(Gruppe): BR \subseteq {USERS \times OPS \times OBS}$}: Zusammenfassung von Nutzern, Operationen und Objekten zu einem Berechtigungsraum
-\item \emph{$Zugriffsberechtigungen: AR \subseteq AUTH \times BR$}: Autentifizierunslevel  eines Raumes
+\item \emph{$Zugriffsberechtigungen: AR \subseteq AUTH \times BR$}: Authentifizierunslevel  eines Raumes
 \end{itemize}
 
 
@@ -335,7 +342,7 @@ Hier ein kurzer Überblick über die Objekte oder Mengen, die g-SIS in seiner Spez
 \subsection{Grundfunktionalität} 
 Die Grundfunktionalität des g-SIS Modells lässt sich sehr gut metaphorisch veranschaulichen. Man könnte es als ein System von Meetingräumen betrachten. Nutzer können einen Raum sowohl betreten als auch verlassen. 
 Genauso können Objekte in den Raum eingebracht werden, oder aus dem Raum herausgenommen. Alle Nutzer im Raum können auf die im Raum vorhandenen Objekte zugreifen (z.B. das Licht einschalten). 
-Die Berechtigung zur Resourcennutzung ist somit nicht an Nutzer oder Objekte gebunden, sondern an den Raum.
+Die Berechtigung zur Ressourcennutzung ist somit nicht an Nutzer oder Objekte gebunden, sondern an den Raum.
 Um diese Operationen im Modell abzubilden werden die folgenden Funktionen definiert. 
 \begin{itemize}
 \item \emph{$Join(u,r): USERS \times BR \rightarrow BR$}: Hinzufügen eines Benutzers zu einem Berechtigungsraum
@@ -352,13 +359,13 @@ Um diese Operationen im Modell abzubilden werden die folgenden Funktionen defini
 Eine g-SIS Spezifikation muss mehrere 
 Anforderungen an syntaktische Korrektheit 
 erfüllen und zusätzliche Anforderungen an die 
-semantische Korrektheit. Alle Anforderungen zusammen bilden die sogenannten Core-Properties der g-SIS Spezifikation. Darunter ist das kleinstmögliche Regelwerk zu verstehen, mittels dem sich g-SIS spezifizieren lässt.
+semantische Korrektheit. Alle Anforderungen zusammen bilden die so genannten Core Properties der g-SIS Spezifikation. Darunter ist das kleinstmögliche Regelwerk zu verstehen, mittels dem sich g-SIS spezifizieren lässt.
 
 \subsubsection{Anforderungen an die Syntaktische Korrektheit}
 \label{kor1}
 
 \begin{trace}[Keine Operationsüberlagerung]
-Add und Remove können nicht gleichzeitig auftreten für ein Objekt, ebensowenig wie Join und Leave für einen Nutzer gleichzeitig auftreten dürfen
+Add und Remove können nicht gleichzeitig auftreten für ein Objekt, ebenso wenig wie Join und Leave für einen Nutzer gleichzeitig auftreten dürfen
 \end{trace}
 \begin{trace}[Keine Mehrfachmitgliedschaften]
 Objekte und Nutzer können nicht mehrfach einer Gruppe hinzugefügt oder entfernt werden
@@ -373,13 +380,13 @@ Kein Leave oder Remove ohne vorheriges Join oder Add
 \subsubsection{Anforderungen an die Semantische Korrektheit}
 \label{kor2}
 \begin{trace}[Persistenz]
- Autorisierung eines Nutzers für ein Objekt bleibt mindestens erhalten (Autorization Persistence) bis eine Funktion auf die Gruppe angewendet wird. Das gilt analog für eine Nichtautorisierung (Revocation Persistence).
+ Autorisierung eines Nutzers für ein Objekt bleibt mindestens erhalten (Authorization Persistence) bis eine Funktion auf die Gruppe angewendet wird. Das gilt analog für eine Nichtautorisierung (Revocation Persistence).
 \end{trace}
 \begin{trace}[Provenienz]
  Ein Nutzer wird erst dann für den Zugriff auf ein Objekt autorisiert, wenn er erstmalig mit dem Objekt in ein und derselben Gruppe Mitglied ist (Provenienz).
 \end{trace}
 \begin{trace}[Begrenztheit]
-Es können keine Autorisierungen eines Nutzers für Objekte einer Gruppe erlangt werden, die während Nicht-Mitgliedschaft dieses Nutzers zur Gruppe hinzugefügt werden (Bounded Autorization).
+Es können keine Autorisierungen eines Nutzers für Objekte einer Gruppe erlangt werden, die während Nicht-Mitgliedschaft dieses Nutzers zur Gruppe hinzugefügt werden (Bounded Authorization).
 \end{trace}
 \begin{trace}[Verfügbarkeit]
  Objekte sind den Nutzern, die vor dem Objekt der Gruppe hinzugefügt wurden zugänglich(Availability).
@@ -387,8 +394,9 @@ Es können keine Autorisierungen eines Nutzers für Objekte einer Gruppe erlangt w
 \subsection{Gestaltungsmöglichkeiten für Gruppeneigenschaften}
 \label{greig}
 
-Sämtliche hier aufgeführten Vorschläge isnd als solche aufzufassen. Sie sind keine Core-Properties einer g-SIS Spezifikation. Sie gehen über eine solche hinaus und sollen lediglich zur Veranschaulichung der Flexibilität und Feingranularität der Autorisierungsmöglichkeiten dienen.
-Hier sind vor allem zwei grundlegende Möglichkeiten (strict und liberal) der funktionalen Ausgestaltung  zu unterscheiden.  Die Opertionen unterscheiden sich durch die beiden Ansätze maßgeblich in ihren zeitbezogenen Implikationen.
+Sämtliche hier aufgeführten Vorschläge sind als solche aufzufassen. Sie sind keine Core Properties einer g-SIS Spezifikation. Sie gehen über eine solche hinaus und sollen lediglich zur Veranschaulichung der Flexibilität und Feingranularität d
+er Autorisierungsmöglichkeiten dienen.
+Hier sind vor allem zwei grundlegende Möglichkeiten (strict und liberal) der funktionalen Ausgestaltung  zu unterscheiden.  Die Operationen unterscheiden sich durch die beiden Ansätze maßgeblich in ihren zeitbezogenen Implikationen.
 Hier seien folgende Vorschläge genannt:
 
 \begin{itemize}
@@ -403,7 +411,7 @@ Hier seien folgende Vorschläge genannt:
 \item \emph{Liberal Remove}: Wird ein Objekt aus einer Gruppe entfernt, so können die Benutzer dieser Gruppe weiterhin auf das Objekt zugreifen.
 \end{itemize}
 
-Möchte man das Ganze noch weiterführen, so kann man auch noch den Wiedereintritt und die damit verbundenen Berechtigungszenarien betrachten. 
+Möchte man das Ganze noch weiterführen, so kann man auch noch den Wiedereintritt und die damit verbundenen Berechtigungsszenarien betrachten. 
 Dies wird hier jedoch nicht mehr betrachtet, es sei jedoch diesbezüglich auf Krishnan et al. \cite{gsis1} verwiesen.
 
 \subsection{Klassifizierung von g-SIS Modellen}
