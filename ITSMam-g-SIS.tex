@@ -1,10 +1,16 @@
 \documentclass{semdoc}
+\usepackage{enumitem}
+\usepackage{amsfonts}
+\usepackage{ngerman}
 % Template: $Id: t01_txt.tex,v 1.7 2000/05/23 12:13:37 bless Exp $
 % -----------------------------------------------------------------------------
 % Seminarbeitrag
 % -----------------------------------------------------------------------------
 % Kommentare beginnen mit einem %-Zeichen
+
 \docbegin
+
+%
 % --> Oberhalb der Linie bitte nichts ändern.
 % ---------------------------------------------------------------------------
 % \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ 
@@ -16,8 +22,9 @@
 % \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ 
 % --> Bitte den Titel des Beitrages in die nächste Zeile eintragen:
 \title{IT-Sicherheitsmanagement Seminar: Group-Centric Models for Secure Information Sharing (g-SIS)}
-
-\newtheorem{definition} {Definition}%
+\newtheorem{definition} {Definition}
+\newtheorem{trace} {Anforderung}
+\newtheorem{bsp} {Beispiel}
 % --> ... und den Namen des Autors:
 \author{Uwe Kühn, Tobias Pöppke}
 % --> optional eine URL mailto:... oder http://www...
@@ -75,8 +82,7 @@
 \section{Einleitung} % in die Klammern die Ueberschrift 
  \label{Introduction} % und ein Label
  
-TODO: Subscription Service , Meeting room Metaphern einführen.
-TODO: Verweise auf beide Arbeiten in der Einleitung: \cite{gsis1} \cite{gsis2} 
+ Durch die stetige Zunahme des Informations- und Kommunikationshunges der Gesellschaft ist auch der Bedarf an sicheren Kommunikationskanälen gewachsen. Denn auch wenn ein Großteil der im Internet verfügbaren Information jedem zugänglich sein soll, gibt es doch immer wieder auch Information die nur für den Zugriff durch einen bestimmten Personenkreis über das Netzwerk bestimmt ist. Doch die Sicherheit im Hinblick auf den Zugang zu diesen Informationen erstreckt sich nicht nur auf den Zugangskanal, sondern auch über das damit in Verbindung stehende Berechtigungssystem. So muss für viele monderne Anwendungen die auf verteilten Informationen aufbauen nicht nur ein einfacher und sicherer Zugang zu diesen Informationen ermöglicht werden, sondern es müssen auch unterschiedliche Berechtigungen für unterschiedliche Nutzer ermöglicht werden. Weiterhin sollen verschiedene Benutzer zu Gruppen zusammengefasst werden können. Ähnlich wie Benutzer sollen sich auch mehrere Informationen zu einer Informationsgruppe verknüpfen lassen, für die dann einheitliche Zugriffsrichtlinien definiert werden können. In der Vergangenheit sind hierzu eine Vielzahl von Systemen entwickelt worden, die sich mit diesen Problemstellungen beschäftigen. Bei einigen Anwendungsszenarien stoßen diese Systeme jedoch an Ihre Grenzen. So fehlt letztlich ich allen verbreiteten Systemen der Zeitbezug. Doch gerade der ist sehr wichtig für viele aktuelle Anwendungsfälle, wie z.B. Aboservices für IT-Produkte wie Online Video und Musik-Plattenformen mit bezahltem Content und zeitlich beschränkter Nutzung. In dieser Arbeit werden in Kapitel 2 zuerst einige weit verbreiteten Zugriffsmechanismen untersucht, dann die Grenzen dieser Systeme vor allem in Bezug auf moderne Anwendungszenarien aufgezeigt und dann mit Kapitel 3 ein neues System vorgestellt, welches die Beschränkungen der herkömmlichen Systeme aufzuheben versucht. Es handelt sich dabei um das g-SIS Modell. In Kapitel 4 schließlich gezeigt, dass sich die bereits vorhandenen Modelle mittels g-SIS darstellen lassen, woran zuletzt Fazit und Ausblick der Arbeit in Kapitel 5 anknüpfen.
  
  
 % % Das Label ist eine Marke, auf die man später mit \ref{labelname} verweisen kann.
@@ -142,6 +148,8 @@ TODO: Verweise auf beide Arbeiten in der Einleitung: \cite{gsis1} \cite{gsis2}
 
 \section{Grundlagen}
 \label{basics}
+
+Hier sind alle zum Verständnis der im weiteren behandelten Fragestellungen nötigen Voraussetzungen, Definitionen und Vereinbarungen aufgeführt.
 Grundsätzlich muss bei der Unterscheidung von Zugriffskontrollmodellen zwischen Policy und Enforcement Ebene unterschieden werden. 
 Diese Unterscheidung basiert auf dem Prinzip der Trennung von Policy und Mechanism, die von Levin et al. eingeführt wurde \cite{policy}.
 Dabei wird unterschieden zwischen der Definition einer Policy und deren konkreter Umsetzung in einem System.
@@ -154,10 +162,153 @@ und den zugrunde liegenden Ideen betrachtet.
 \subsection{Linear Temporal Logic}
 \label{ltl}
 
+Wie auch die meisten anderen Zugriffsmechanismen bedient sich auch g-SIS zur grundlegenden Definition seiner Eigenschaften der Aussagenlogik. Um den zusätzlichen zeitlichen Aspekt zu berücksichtigen ist jedoch eine spezielle Form der Aussagenlogik nötig, die lineare temporale Logik. Im weiteren Verlauf wird diese LTL bezeichnet. Die Notationen für die herkömmlichen aussagenlogischen Verknüpfungen wie {$UND$} und {$ODER$} Operatoren, etc. werden als bekannt vorausgesetzt. Andere Operatoren sind jedoch etwas spezieller und werden im Zusammenhang mit g-SIS häufig benutzt und hier deswegen explizit erklärt. Die Operatoren lassen sich hierbei grob nach zwei Merkmalen kategorisieren. Das erste Merkmal ist dabei die Anzahl der Operanden, hiernach kann man in unäre und binäre Operatoren unterteilen. Das zweite Merkmal ist der Zeitbezug, es lassen sich mit LTL sowohl Aussagen über die Vergangenheit tätigen, als auch über die Zukunft.
+
+
+\subsection{LTL -Operatoren}
+\subsubsection{Unär/Vergangenheitsbezogen}
+
+ \emph{$\Theta\,p$}: die Aussage {$p$} ist bisher immer gültig 
+gewesen
+
+\emph{$\diamondsuit\,p$}: die Aussage {$p$} ist bisher mindestens einmal gültig
+gewesen
+
+\subsubsection{Unär/Zukunftsbezogen}
+
+ \emph{$\circ\,p$}: die Aussage {$p$} wird im nächsten Zustand 
+gültig sein
+
+\emph{$\Box\,p$}: die Aussage {$p$} wird immer gültig sein
+
+
+
+\subsubsection{Binär/Vergangenheitsbezogen}
+{$p\,\mathcal{S}\,q$}: seit Auftreten von {$q$} ist 
+auch {$p$} gültig
+
+\subsubsection{Binär/Zukunftsbezogen}
+{$p\,\mathcal{U}\,q$}: bis zum Auftreten von {$q$} 
+wird {$p$} mindestens gültig sein
+
+
+{$p\,\mathcal{W}\,q$}: bis zum Auftreten von {$q$} ist 
+{$p$} mindestens gültig, falls {$q$} nie auftritt 
+wird {$p$} immer gültig sein
+
+\subsection{Beispiel}
+
+Um die Anwendung von LTL etwas zu verdeutlichen, hier ein Beispiel, wie sich Aussagen mit einem Zeitbezug mittels LTL formalisieren  lassen.
+
+\begin{bsp} [Aussage in LTL]
+\hfil\\
+{$ \phi = \Box(Authz \rightarrow (Authz\, \mathcal{W}\, (Join \vee    Leave \vee  Add    \vee Remove)))$}
+\end{bsp}
+
+Es gilt immer ({$\Box$}), dass eine Autorisierung ({$Authz$}) die fortwährende  Autorisierung impliziert({$\rightarrow Authz$}), mindestens solange bis ({$\mathcal{W}$}) entweder ein {$Join$}, {$ Leave$}, {$Add$} oder {$Remove$}  auftritt.
+
+
+\subsection{Mengen, Symbole}
+
+\subsubsection{Symbole}
+\label{sbl}
+
+Hier ein kurzer Überblick über die Objekte oder Mengen, die g-SIS in seiner Spezifikation behandelt und die dafür verwendeten Symbole und Eigenschaften.
+
+{$USERS$}: Die unabgeschlossene Menge aller Nutzer. Hierbei kann es sich z.B. um Rechner oder Menschen handeln.
+
+{$OBS$}: Die unabgeschlossene Menge alle Objekte. Z. B. Dateien oder Rescourcen wie Drucker, Schnittstellen, etc.
+
+{$OPS$}: Die abgeschlossene Menge aller Operationen. Der Einfachheit halber betrachten wir im Folgenden nur read und write Operationen, es ließen sich hier jedoch belieg viele weitere Operationen definieren, etwa das Anlegen von neuen Objekten, oder das Löschen von Objekten. 
+
+{$AUTH$}: Die abgeschlossene Menge der Autorisationsstufen. Der Einfachheit halber wird hier nur ein binärer Autorisierungsmechanismus betrachtet.
+
+
+\subsubsection{Abgeleitete Mengen} 
+
+\begin{itemize}
+\item \emph{$Berechtigungsr$}ä{$ume(Gruppe): BR \subseteq {USERS \times OPS \times OBS}$}: Zusammenfassung von Nutzern, Operationen und Objekten zu einem Berechtigungsraum
+\item \emph{$Zugriffsberechtigungen: AR \subseteq AUTH \times BR$}: Autentifizierunslevel  eines Raumes
+\end{itemize}
+
+\subsection{Grundfunktionalität} 
+Minimales Set an Funktionen:
+\begin{itemize}
+\item \emph{$Join(u,r): USERS \times BR \rightarrow BR$}: Hinzufügen eines Benutzers zu einem Berechtigungsraum
+\item \emph{$Add(o,r): OBS \times BR \rightarrow BR$}: Hinzufügen eines Objekts zu einem Berechtigungsraum
+\item \emph{$Leave(u,r): USERS \times BR \rightarrow BR$}: Entfernen eines Benutzers aus einem Berechtigungsraum
+\item \emph{$Remove(o,r): OBS \times BR \rightarrow BR$}: Entfernen eines Objekts aus einem Berechtigungsraum
+\item \emph{$Authz(a,r): AUTH \times BR \rightarrow AR$}: Setzen des Berechtigungslevels für einen Berechtigungsraum
+\end{itemize}
+
+
+\subsection{Grundlegende Korrektheitsanforderungen}
+\label{kor}
+
+Eine g-SIS Spezifikation muss mehrere 
+Anforderungen an syntaktische Korrektheit 
+erfüllen und zusätzliche Anforderungen an die 
+semantische Korrektheit
+
+\subsubsection{Anforderungen an die Syntaktische Korrektheit}
+\label{kor1}
+
+\begin{trace}[Keine Operationsüberlagerung]
+Add und Remove können nicht gleichzeitig auftreten für ein Objekt, ebensowenig wie Join und Leave für einen Nutzer gleichzeitig auftreten dürfen
+\end{trace}
+\begin{trace}[Keine Mehrfachmitgliedschaften]
+Objekte und Nutzer können nicht mehrfach einer Gruppe hinzugefügt oder entfernt werden
+\end{trace}
+\begin{trace}[Sequenzielle Operationen]
+Immer nur eine Operation zu einem gegebenen Zeitpunkt pro Nutzer oder Objekt
+\end{trace}
+\begin{trace}[Positive Definitheit]
+Kein Leave oder Remove ohne vorheriges Join oder Add
+\end{trace}
+
+\subsubsection{Anforderungen an die Semantische Korrektheit}
+\label{kor2}
+\begin{trace}[Persistenz]
+ Autorisierung eines Nutzers für ein Objekt bleibt mindestens erhalten (Autorization Persistence) bis eine Funktion auf die Gruppe angewendet wird. Das gilt analog für eine Nichtautorisierung (Revocation Persistence).
+\end{trace}
+\begin{trace}[Provenienz]
+ Ein Nutzer wird erst dann für den Zugriff auf ein Objekt autorisiert, wenn er erstmalig mit dem Objekt in ein und derselben Gruppe Mitglied ist (Provenienz).
+\end{trace}
+\begin{trace}[Begrenztheit]
+Es können keine Autorisierungen eines Nutzers für Objekte einer Gruppe erlangt werden, die während Nicht-Mitgliedschaft dieses Nutzers zur Gruppe hinzugefügt werden (Bounded Autorization).
+\end{trace}
+\begin{trace}[Verfügbarkeit]
+ Objekte sind den Nutzern, die vor dem Objekt der Gruppe hinzugefügt wurden zugänglich(Availability).
+\end{trace}
+\subsection{Gestaltungsmöglichkeiten für Gruppeneigenschaften}
+\label{greig}
+
+Sämtliche hier aufgeführten Vorschläge isnd als solche aufzufassen. Sie sind keine Core-Properties einer g-SIS Spezifikation. Sie gehen über eine solche hinaus und sollen lediglich zur Veranschaulichung der Flexibilität und Feingranularität der Autorisierungsmöglichkeiten dienen.
+Hier sind vor allem zwei grundlegende Möglichkeiten (strict und liberal) der funktionalen Ausgestaltung  zu unterscheiden.  Die Opertionen unterscheiden sich durch die beiden Ansätze maßgeblich in ihren zeitbezogenen Implikationen.
+Hier seien folgende Vorschläge genannt:
+
+\begin{itemize}
+\item \emph{Stric Join}: Ein Benutzer kann auf keine Objekte zugreifen, die vor ihm zur Gruppe hinzugefügt wurden.
+\item \emph{Liberal Join}: Ein Benutzer kann auf Objekte zugreifen, die vor ihm zur Gruppe hinzugefügt wurden.
+\item \emph{Strict Leave}: Kein Benutzer kann auf Objekte der Gruppe mehr zugreifen, nachdem er eine Gruppe verlassen hat.
+\item \emph{Liberal Leave }: Ein Benutzer kann nachdem er eine Gruppe verlassen hat weiterhin auf Objekte der Gruppe zugreifen.
+
+\item \emph{Stric Add}: Der Zugriff auf ein Objekt ist nur den Nutzern gestattet, die vor dem Objekt der Gruppe hinzugefügt wurden.
+\item \emph{Liberal Add}: Alle Nutzer einer Gruppe können auf ein Objekt zugreifen, wenn es der Gruppe hinzugefügt wird.
+\item \emph{Strict Remove}: Wird ein Objekt aus einer Gruppe entfernt, so kann kein Benutzer dieser Gruppe weiterhin auf das Objekt zugreifen.
+\item \emph{Liberal Remove}: Wird ein Objekt aus einer Gruppe entfernt, so können die Benutzer dieser Gruppe weiterhin auf das Objekt zugreifen.
+\end{itemize}
+
+Möchte man das Ganze noch weiterführen, so kann man auch noch den Wiedereintritt und die damit verbundenen Berechtigungszenarien betrachten. Dies wird hier jedoch nicht mehr betrachtet, es sei jedoch diesbezüglich auf TODO verwiesen.
+
+TODO: Verweis
+
+Policy-, Enforcement-Layer.
+
 \subsection{Lattice-Based Access Control}
 \label{lbac}
 Eine wichtige Klasse von Zugriffskontrollmodellen sind \emph{Lattice-Based Access Control (LBAC)} Modelle.
-Die Grundlagen von LBAC wurden in den 1970ern von Bell, LaPadula, Biba und Denning gelegt und entstand 
+Die Grundlagen von LBAC wurden in den 1970ern von Bell, LaPadula, Biba und Denning gelegt und entstanden 
 aus den Bedürfnissen des Verteidigungssektors. Eine Übersicht über die verschiedenen Modelle 
 und formale Definitionen, sowie weiterführende Referenzen finden sich bei Sandhu \cite{lbac2}.
 
@@ -238,7 +389,7 @@ constrained RBAC. Für die Definitionen dieser Modelle sei an dieser Stelle jedoc
 
 \section{G-SIS}
 \label{gsis}
-TODO: Hier Teil von Uwe?
+
 
 \subsection{Klassifizierung von g-SIS Modellen}
 In vielen Fällen ist es notwendig, die Benutzer eines abzusichernden Systems in mehr als eine Gruppe einzuteilen. 
